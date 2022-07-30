@@ -23,7 +23,7 @@ function Header() {
                         </a>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['home']}`}>
-                        <a className={styles["header-links"]} href="/create">
+                        <a className={styles["header-links"]} href="/create-trip">
                             create
                         </a>
                     </li>

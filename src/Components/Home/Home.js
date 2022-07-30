@@ -1,10 +1,12 @@
 import style from './Home.module.css';
+
 import collage from '../../Resources/img/love-fishing.png';
 import Dospat from '../../Resources/img/travel-image-213.jpg';
 import Vatcha from '../../Resources/img/maxresdefault.jpg';
 import MechaPoliana from '../../Resources/img/1517770976569c80450696c40b7c8e1982063892bf.jpg';
-function Main() {
 
+function Main() {
+    
     return (
         <section className={style["main-section-box"]}>
             <section className={style["company-info-container"]}>
