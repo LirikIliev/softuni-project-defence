@@ -1,4 +1,5 @@
 import styles from "./Header.module.css";
+import { Link } from 'react-router-dom';
 function Header() {
 
     return (
@@ -6,41 +7,41 @@ function Header() {
             <nav className={styles["main-header-navigation"]}>
                 <ul className={styles["main-header-menu"]}>
                     <li className={`${styles["header-menu"]} ${styles['home-page-link']}`}>
-                        <a className={styles["header-links"]} href="/">
+                        <Link className={styles["header-links"]} to="/">
                             Fishing Adventures
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <ul className={styles["main-header-menu"]}>
                     <li className={`${styles["header-menu"]} ${styles['posts']}`}>
-                        <a className={styles["header-links"]} href="/all-posts">
+                        <Link className={styles["header-links"]} to="/all-posts">
                             All posts
-                        </a>
+                        </Link>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['posts']}`}>
-                        <a className={styles["header-links"]} href="/my-posts">
+                        <Link className={styles["header-links"]} to="/my-posts">
                             my posts
-                        </a>
+                        </Link>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['home']}`}>
-                        <a className={styles["header-links"]} href="/create-trip">
+                        <Link className={styles["header-links"]} to="/create-trip">
                             create
-                        </a>
+                        </Link>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['home']}`}>
-                        <a className={styles["header-links"]} href="/login">
+                        <Link className={styles["header-links"]} to="/login">
                             login
-                        </a>
+                        </Link>
                     </li >
                     <li className={`${styles["header-menu"]} ${styles['register']}`} >
-                        <a className={styles["header-links"]} href="/register" >
+                        <Link className={styles["header-links"]} to="/register" >
                             register
-                        </a >
+                        </Link>
                     </li >
                     <li className={`${styles["header-menu"]} ${styles['logout']}`} >
-                        <a className={styles["header-links"]} href="/logout" >
+                        <Link className={styles["header-links"]} to="/logout" >
                             logout
-                        </a >
+                        </Link>
                     </li >
                 </ul >
             </nav >

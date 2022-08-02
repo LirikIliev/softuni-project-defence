@@ -1,12 +1,14 @@
 import style from './Home.module.css';
 
+import { Link } from 'react-router-dom';
+
 import collage from '../../Resources/img/love-fishing.png';
 import Dospat from '../../Resources/img/travel-image-213.jpg';
 import Vatcha from '../../Resources/img/maxresdefault.jpg';
 import MechaPoliana from '../../Resources/img/1517770976569c80450696c40b7c8e1982063892bf.jpg';
 
 function Main() {
-    
+
     return (
         <section className={style["main-section-box"]}>
             <section className={style["company-info-container"]}>
@@ -30,7 +32,9 @@ function Main() {
                     <h4 className={style["destination-title"]}>
                         <span className={style["my-post-label"]}>Destination:</span>Dospat Dam
                     </h4>
-                    <button className={style["destination-link"]}>Details</button>
+                    <Link to={"/details/123456asda"}>
+                        <button className={style["destination-link"]}>Details</button>
+                    </Link>
                 </div>
                 <div className={style["destination-box"]}>
                     <img src={Vatcha} className={style["destination-image"]} alt="Image of the some dam" />
@@ -40,7 +44,9 @@ function Main() {
                     <h4 className={style["destination-title"]}>
                         <span className={style["my-post-label"]}>Destination: </span>Vatcha Dam
                     </h4>
-                    <button className={style["destination-link"]}>Details</button>
+                    <Link to={"/details/123456123"}>
+                        <button className={style["destination-link"]}>Details</button>
+                    </Link>
                 </div>
                 <div className={style["destination-box"]}>
                     <img src={MechaPoliana} className={style["destination-image"]}
@@ -51,7 +57,9 @@ function Main() {
                     <h4 className={style["destination-title"]}>
                         <span className={style["my-post-label"]}>Destination: </span>Metcha Poliana
                     </h4>
-                    <button className={style["destination-link"]}>Details</button>
+                    <Link to={"/details/123456"}>
+                        <button className={style["destination-link"]}>Details</button>
+                    </Link>
                 </div>
             </section>
         </section>

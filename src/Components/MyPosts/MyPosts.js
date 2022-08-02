@@ -1,6 +1,8 @@
 import style from './MyPosts.module.css';
 import dospatImage from '../../Resources/img/travel-image-213.jpg'
 
+import { Link } from 'react-router-dom';
+
 function MyPosts() {
 
     return (
@@ -21,7 +23,9 @@ function MyPosts() {
                     <h4 className={style["my-posts-title"]}>
                         <span className={style["my-post-label"]}>Destination: </span>Dospat Dam
                     </h4>
-                    <button className={style["my-posts-link"]}>Details</button>
+                    <Link to={`/details/asdasdasdw`}>
+                        <button className={style["all-posts-link"]}>Details</button>
+                    </Link>
                 </div>
             </section>
         </section>

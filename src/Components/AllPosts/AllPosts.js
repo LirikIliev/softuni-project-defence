@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import style from './AllPosts.module.css';
-import dospat from '../../Resources/img/travel-image-213.jpg';
-import metchaPolqna from '../../Resources/img/1517770976569c80450696c40b7c8e1982063892bf.jpg';
-import vatcha from '../../Resources/img/maxresdefault.jpg';
 
 import { getAll } from '../../service/tripService';
+import { Link } from 'react-router-dom';
 
 
 function AllPosts() {
@@ -38,7 +36,9 @@ function AllPosts() {
                     <h4 className={style["all-posts-title"]}>
                         <span className={style["my-post-label"]}>Destination: </span>{x.destination}
                     </h4>
-                    <button className={style["all-posts-link"]}>Details</button>
+                    <Link to={`/details/${x._id}`}>
+                        <button className={style["all-posts-link"]}>Details</button>
+                    </Link>
                 </div>)
                 )}
             </section>

@@ -1,6 +1,6 @@
 export const registerUser = (data) => {
     return (
-        fetch("http://localhost:3030/register", {
+        fetch("http://localhost:3030/user/register", {
             method: 'post',
             headers: {
                 'Content-Type': "application/json"
@@ -13,7 +13,7 @@ export const registerUser = (data) => {
 
 export const loginUser = (data) => {
     return (
-        fetch("http://localhost:3030/login", {
+        fetch("http://localhost:3030/user/login", {
             method: 'post',
             headers: {
                 'Content-Type': "application/json"

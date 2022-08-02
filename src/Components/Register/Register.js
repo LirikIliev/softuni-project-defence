@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import style from './Register.module.css';
 import { registerUser } from '../../service/userService';
@@ -77,7 +77,6 @@ function Register() {
         try {
             registerUser(newUser)
                 .then(result => {
-                    console.log(result);
                     setValue(
                         {
                             firstName: '',
@@ -87,6 +86,10 @@ function Register() {
                             repeatPassword: '',
                         }
                     )
+                    console.log(result);
+                })
+                .catch(error => {
+                    throw Error({ message: error })
                 })
         } catch (error) {
             console.log(error);
@@ -102,34 +105,74 @@ function Register() {
             <h1 className={style["registration-title"]}>Become a part of us!</h1>
             <form className={style["registration-form"]} onSubmit={onSubmitRegister}>
                 <div className={style["register-form-box"]}>
-                    <label htmlFor="firstName" className={`${style["register-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="firstName"
+                        className={`${style["register-label"]} ${style["required"]}`}>
                         First name:
                     </label>
-                    <input type="text" name="firstName" id="firstName" onChange={onChangeValue} onBlur={(e) => validatorFunction(e)} value={value.firstName} />
+                    <input
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        onChange={onChangeValue}
+                        onBlur={(e) => validatorFunction(e)}
+                        value={value.firstName} />
                 </div>
                 <div className={style["register-form-box"]}>
-                    <label htmlFor="lastName" className={`${style["register-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="lastName"
+                        className={`${style["register-label"]} ${style["required"]}`}>
                         Last name:
                     </label>
-                    <input type="text" name="lastName" id="lastName" onChange={onChangeValue} onBlur={(e) => validatorFunction(e)} value={value.lastName} />
+                    <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        onChange={onChangeValue}
+                        onBlur={(e) => validatorFunction(e)}
+                        value={value.lastName} />
                 </div>
                 <div className={style["register-form-box"]}>
-                    <label htmlFor="email" className={`${style["register-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="email"
+                        className={`${style["register-label"]} ${style["required"]}`}>
                         Email:
                     </label>
-                    <input type="email" name="email" id="email" onChange={onChangeValue} onBlur={(e) => validatorFunction(e)} value={value.email} />
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        onChange={onChangeValue}
+                        onBlur={(e) => validatorFunction(e)}
+                        value={value.email} />
                 </div>
                 <div className={style["register-form-box"]}>
-                    <label htmlFor="password" className={`${style["register-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="password"
+                        className={`${style["register-label"]} ${style["required"]}`}>
                         Password:
                     </label>
-                    <input type="password" name="password" id="password" onChange={onChangeValue} onBlur={(e) => validatorFunction(e)} value={value.password} />
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        onChange={onChangeValue}
+                        onBlur={(e) => validatorFunction(e)}
+                        value={value.password} />
                 </div>
                 <div className={style["register-form-box"]}>
-                    <label htmlFor="repeatPassword" className={`${style["register-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="repeatPassword"
+                        className={`${style["register-label"]} ${style["required"]}`}>
                         Repeat password:
                     </label>
-                    <input type="password" name="repeatPassword" id="repeatPassword" onChange={onChangeValue} onBlur={(e) => validatorFunction(e)} value={value.repeatPassword} />
+                    <input
+                        type="password"
+                        name="repeatPassword"
+                        id="repeatPassword"
+                        onChange={onChangeValue}
+                        onBlur={(e) => validatorFunction(e)}
+                        value={value.repeatPassword} />
                 </div>
                 <div className={`${style["register-form-box"]} ${style["submit"]}`}>
                     {

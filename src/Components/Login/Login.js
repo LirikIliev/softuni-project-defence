@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { loginUser } from '../../service/userService';
 
@@ -60,16 +60,29 @@ function Login() {
             <h1 className={style["login-title"]}>Hello again!!!</h1>
             <form className={style["login-form"]} onSubmit={onSubmitLogin}>
                 <div className={style["login-form-box"]}>
-                    <label htmlFor="email" className={`${style["login-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="email"
+                        className={`${style["login-label"]} ${style["required"]}`}>
                         Email:
                     </label>
-                    <input type="email" name="email" id="email" onChange={onChangeLoginValue} onBlur={validatorFunction} />
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        onChange={onChangeLoginValue}
+                        onBlur={validatorFunction} />
                 </div>
                 <div className={style["login-form-box"]}>
-                    <label htmlFor="password" className={`${style["login-label"]} ${style["required"]}`}>
+                    <label
+                        htmlFor="password"
+                        className={`${style["login-label"]} ${style["required"]}`}>
                         Password:
                     </label>
-                    <input type="password" name="password" id="password" onChange={onChangeLoginValue} onBlur={validatorFunction} />
+                    <input
+                        type="password"
+                        name="password"
+                        id="password" onChange={onChangeLoginValue}
+                        onBlur={validatorFunction} />
                 </div>
                 <div className={`${style["login-form-box"]} ${style["submit"]}`}>
                     {isValid

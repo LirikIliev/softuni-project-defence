@@ -23,8 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/create-trip" element={<Create />} />
-          <Route path="/Edit" element={<Edit />} />
-          <Route path="/Details" element={<Details />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/details/:tripId" element={<Details />} />
         </Routes>
       </main>
       <Footer />
