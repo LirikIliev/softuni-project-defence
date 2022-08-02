@@ -1,7 +1,11 @@
 import style from './Details.module.css';
 import detailsImage from '../../Resources/img/1517770976569c80450696c40b7c8e1982063892bf.jpg'
+import { Link, useParams } from 'react-router-dom';
 
 function Details() {
+    const { tripId } = useParams();
+
+    console.log(tripId);
 
     return (
         <section className={style["details"]}>
@@ -43,9 +47,11 @@ function Details() {
                         Likes:<span id="likes"> </span>
                     </div>
                     <div className={style["buttons"]}>
-                        <button id="edit" className={style["edit"]}>
-                            Edit - <i className="fa-solid fa-pen" />
-                        </button>
+                        <Link to={`/edit/${tripId}`}>
+                            <button id="edit" className={style["edit"]}>
+                                Edit - <i className="fa-solid fa-pen" />
+                            </button>
+                        </Link>
                         <button id="delete" className={style["delete"]}>
                             Delete - <i className="fa-solid fa-trash" />
                         </button>
@@ -55,7 +61,7 @@ function Details() {
                     </div>
                 </article>
             </section>
-        </section>
+        </section >
 
     )
 }

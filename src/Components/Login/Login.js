@@ -1,24 +1,30 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 import { loginUser } from '../../service/userService';
+import { AuthContext } from '../context/AurhContext';
 
 import style from './Login.module.css';
 
 function Login() {
+    const { userLogin } = useContext(AuthContext);
+    let Navigate = useNavigate();
+
     const [value, setValue] = useState(
         {
             email: '',
             password: '',
         }
     );
-    const [invalid, setInvalid] = useState(
+    const [invalidLogin, setInvalidLogin] = useState(
         {
             email: false,
             password: false,
         }
     );
 
-    const isValid = Object.values(invalid)
+    const isValid = Object.values(invalidLogin)
         .some(x => x !== true);
 
     function onChangeLoginValue(e) {
@@ -30,28 +36,28 @@ function Login() {
             let regexp = /^\w+@\w+\.[a-zA-z]+$/g;
             let match = e.target.value.match(regexp);
             if (match) {
-                setInvalid(state => ({ ...state, [e.target.name]: true }));
+                setInvalidLogin(state => ({ ...state, [e.target.name]: true }));
             } else {
-                setInvalid(state => ({ ...state, [e.target.name]: false }));
+                setInvalidLogin(state => ({ ...state, [e.target.name]: false }));
             };
         } else if (e.target.name === 'password') {
             if (e.target.value) {
-                setInvalid(state => ({ ...state, [e.target.name]: true }));
+                setInvalidLogin(state => ({ ...state, [e.target.name]: true }));
             } else {
-                setInvalid(state => ({ ...state, [e.target.name]: false }));
+                setInvalidLogin(state => ({ ...state, [e.target.name]: false }));
             };
         };
     };
 
-    function onSubmitLogin(e) {
+    async function onSubmitLogin(e) {
         e.preventDefault();
         try {
-            loginUser(value)
-                .then(result => {
-                    console.log(result);
-                })
-        } catch (error) {
-            console.log(error);
+            let userData = await loginUser(value);
+            AuthContext(userData);
+            Navigate("/")
+        } catch (err) {
+            Navigate('/register')
+            // console.log(err.message);
         }
     };
 

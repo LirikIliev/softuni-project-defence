@@ -1,5 +1,10 @@
 import styles from "./Header.module.css";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+const activeLinksStyles = {
+    "box-shadow": "5px 2px 9px -3px #00d9ff",
+};
+
 function Header() {
 
     return (
@@ -7,41 +12,54 @@ function Header() {
             <nav className={styles["main-header-navigation"]}>
                 <ul className={styles["main-header-menu"]}>
                     <li className={`${styles["header-menu"]} ${styles['home-page-link']}`}>
-                        <Link className={styles["header-links"]} to="/">
+                        <NavLink className={styles["header-links"]}
+                            to="/">
                             Fishing Adventures
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
                 <ul className={styles["main-header-menu"]}>
                     <li className={`${styles["header-menu"]} ${styles['posts']}`}>
-                        <Link className={styles["header-links"]} to="/all-posts">
+                        <NavLink className={styles["header-links"]} style={(isActive) => {
+
+                        }} to="/all-posts">
                             All posts
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['posts']}`}>
-                        <Link className={styles["header-links"]} to="/my-posts">
+                        <NavLink className={styles["header-links"]} style={(isActive) => {
+
+                        }} to="/my-posts">
                             my posts
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['home']}`}>
-                        <Link className={styles["header-links"]} to="/create-trip">
+                        <NavLink className={styles["header-links"]} style={(isActive) => {
+
+                        }} to="/create-trip">
                             create
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className={`${styles["header-menu"]} ${styles['home']}`}>
-                        <Link className={styles["header-links"]} to="/login">
+                        <NavLink className={styles["header-links"]} style={(isActive) => {
+
+                        }} to="/login">
                             login
-                        </Link>
+                        </NavLink>
                     </li >
                     <li className={`${styles["header-menu"]} ${styles['register']}`} >
-                        <Link className={styles["header-links"]} to="/register" >
+                        <NavLink className={styles["header-links"]} style={(isActive) => {
+
+                        }} to="/register" >
                             register
-                        </Link>
+                        </NavLink>
                     </li >
                     <li className={`${styles["header-menu"]} ${styles['logout']}`} >
-                        <Link className={styles["header-links"]} to="/logout" >
+                        <NavLink className={styles["header-links"]} style={(isActive) => {
+
+                        }} to="/logout" >
                             logout
-                        </Link>
+                        </NavLink>
                     </li >
                 </ul >
             </nav >

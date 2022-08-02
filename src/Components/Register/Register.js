@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { registerUser } from '../../service/userService';
+import { AuthContext } from '../context/AurhContext';
 
 import style from './Register.module.css';
-import { registerUser } from '../../service/userService';
 
 function Register() {
+    let Navigate = useNavigate()
 
     const [value, setValue] = useState(
         {
@@ -65,7 +69,7 @@ function Register() {
         };
     };
 
-    function onSubmitRegister(e) {
+    async function onSubmitRegister(e) {
         e.preventDefault();
         let newUser = {
             firstName: value.firstName,
@@ -75,25 +79,12 @@ function Register() {
         };
 
         try {
-            registerUser(newUser)
-                .then(result => {
-                    setValue(
-                        {
-                            firstName: '',
-                            lastName: '',
-                            email: '',
-                            password: '',
-                            repeatPassword: '',
-                        }
-                    )
-                    console.log(result);
-                })
-                .catch(error => {
-                    throw Error({ message: error })
-                })
-        } catch (error) {
-            console.log(error);
-        };
+            let userData = await registerUser(value);
+            AuthContext(userData);
+            Navigate("/")
+        } catch (err) {
+            console.log(err.message);
+        }
     };
 
     function onChangeValue(e) {

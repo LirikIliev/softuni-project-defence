@@ -1,25 +1,47 @@
-export const registerUser = (data) => {
-    return (
-        fetch("http://localhost:3030/user/register", {
+export const registerUser = async (data) => {
+    try {
+        const response = await fetch("http://localhost:3030/user/register", {
             method: 'post',
             headers: {
                 'Content-Type': "application/json"
             },
             body: JSON.stringify(data)
         })
-            .then(res => res.json())
-    );
+        if (response.ok == false) {
+            const error = await response.json();
+            throw ({ message: error.message });
+        }
+        try {
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            return response;
+        }
+    } catch (err) {
+        throw err;
+    }
 };
 
-export const loginUser = (data) => {
-    return (
-        fetch("http://localhost:3030/user/login", {
+export const loginUser = async (data) => {
+    try {
+        const response = await fetch("http://localhost:3030/user/login", {
             method: 'post',
             headers: {
                 'Content-Type': "application/json"
             },
             body: JSON.stringify(data)
         })
-            .then(res => res.json())
-    );
+        if (response.ok == false) {
+            const error = await response.json();
+            throw ({ message: error.message });
+        }
+        try {
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            return response;
+        }
+    } catch (err) {
+        throw err;
+    }
 };
