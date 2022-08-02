@@ -7,6 +7,7 @@ import { AuthContext } from '../context/AurhContext';
 import style from './Register.module.css';
 
 function Register() {
+    const { userLogin } = useContext(AuthContext);
     let Navigate = useNavigate()
 
     const [value, setValue] = useState(
@@ -80,7 +81,7 @@ function Register() {
 
         try {
             let userData = await registerUser(value);
-            AuthContext(userData);
+            userLogin(userData);
             Navigate("/")
         } catch (err) {
             console.log(err.message);

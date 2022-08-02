@@ -45,3 +45,26 @@ export const loginUser = async (data) => {
         throw err;
     }
 };
+
+export const logoutUser = async (accessToken) => {
+    try {
+        const response = await fetch("http://localhost:3030/user/logout", {
+            method: 'get',
+            headers: {
+                'X-Authorization': accessToken,
+            }
+        })
+        if (response.ok == false) {
+            const error = await response.json();
+            throw ({ message: error.message });
+        }
+        try {
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            return response;
+        }
+    } catch (err) {
+        throw err;
+    }
+}

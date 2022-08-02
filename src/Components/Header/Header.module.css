@@ -89,4 +89,14 @@
     color: #ffffff;
     text-align: start;
   }
+
+  header.main-header-box nav.main-header-navigation ul.main-header-menu li span.header-links {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+  }
 }

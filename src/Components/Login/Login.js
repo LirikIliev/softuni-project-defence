@@ -53,11 +53,11 @@ function Login() {
         e.preventDefault();
         try {
             let userData = await loginUser(value);
-            AuthContext(userData);
+            userLogin(userData);
             Navigate("/")
         } catch (err) {
             Navigate('/register')
-            // console.log(err.message);
+            console.log(err.message);
         }
     };
 

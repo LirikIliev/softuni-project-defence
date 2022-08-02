@@ -13,9 +13,13 @@ import Create from './Components/Create/Create';
 import Edit from './Components/Edit/Edit';
 import Details from './Components/Details/Details';
 import AllPosts from "./Components/AllPosts/AllPosts";
+import Logout from "./Components/Logout/Logout";
 
 function App() {
   const [auth, setAuth] = useState({});
+  const userLogout = () => {
+    setAuth({})
+  }
 
   const userLogin = (userData) => {
     setAuth(userData);
@@ -23,7 +27,7 @@ function App() {
 
   return (
     <>
-      <AuthContext.Provider value={{ auth, userLogin }}>
+      <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
         <Header />
         <main className="main-section">
           <Routes>
@@ -31,6 +35,7 @@ function App() {
             <Route path="/all-posts" element={<AllPosts />} />
             <Route path="/my-posts" element={<MyPosts />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create-trip" element={<Create />} />
             <Route path="/edit/:tripId" element={<Edit />} />
