@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { loginUser } from '../../service/userService';
-import { AuthContext } from '../context/AurhContext';
+import { AuthContext } from '../../context/AurhContext';
 
 import style from './Login.module.css';
 

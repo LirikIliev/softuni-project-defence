@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import styles from "./Header.module.css";
 
-import { AuthContext } from '../context/AurhContext';
+import { AuthContext } from '../../context/AurhContext';
 
 const activeLinksStyles = {
     "box-shadow": "5px 2px 9px -3px #00d9ff",

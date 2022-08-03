@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { registerUser } from '../../service/userService';
-import { AuthContext } from '../context/AurhContext';
+import { AuthContext } from '../../context/AurhContext';
 
 import style from './Register.module.css';
 
