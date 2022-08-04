@@ -4,7 +4,10 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 
 import { AuthContext } from '../../context/AurhContext';
+import { LikedContext } from '../../context/LikedContext';
+
 import { getCurrent } from '../../service/tripService';
+import { useLike } from '../../hooks/useLike';
 
 function Details() {
     const { tripId } = useParams();
@@ -12,18 +15,30 @@ function Details() {
     const [owner, setOwner] = useState(false);
     const [guest, setGuest] = useState(true);
 
+    const [liked, setLiked] = useLike();
+
     // const Navigate = useNavigate();
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    const { userLikedTrip } = useContext(LikedContext);
 
     useEffect(() => {
         getCurrent(tripId)
             .then(result => {
                 setTrip(result);
+
+                const isHeLikedIt = result.likes.some(userId => userId == user._id);
+                setLiked(isHeLikedIt);
+
                 if (user._id === result._ownerId) {
                     setOwner(true);
                 };
                 if (user._id) {
                     setGuest(false)
+                };
+                if (isHeLikedIt) {
+                    userLikedTrip(true);
+                } else {
+                    userLikedTrip(false);
                 };
             })
             .catch(err => {
@@ -50,7 +65,12 @@ function Details() {
         <>
             <Link to={`/like/${tripId}`}>
                 <button className={style["like"]}>
-                    Like - <i className="fa-solid fa-thumbs-up" />
+                    Like -
+                    {
+                        liked
+                            ? <i className="fa-solid fa-thumbs-up" style={{ color: 'green', width: '50px' }} />
+                            : <i className="fa-solid fa-thumbs-up" style={{ width: '50px' }} />
+                    }
                 </button>
             </Link>
         </>

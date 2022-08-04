@@ -31,6 +31,8 @@ export async function deleteTrip(id) {
 };
 
 export async function likeTrip(id, data) {
-    console.log(data);
     return await api.post(host + '/like/' + id, data);
+};
+export async function dislikeTrip(id, data) {
+    return await api.post(host + '/dislike/' + id, data);
 };
