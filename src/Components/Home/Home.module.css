@@ -51,6 +51,7 @@
   section.main-section-box section.destination-container {
     display: flex;
     flex-wrap: wrap;
+    width: 60%;
     justify-content: space-around;
     align-items: center;
     gap: 50px;

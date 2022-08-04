@@ -17,7 +17,7 @@ function Details() {
 
     const [liked, setLiked] = useLike();
 
-    // const Navigate = useNavigate();
+    const Navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const { userLikedTrip } = useContext(LikedContext);
 
@@ -43,6 +43,7 @@ function Details() {
             })
             .catch(err => {
                 console.log(err);
+                Navigate('/');
             })
     }, []);
 

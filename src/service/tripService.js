@@ -27,7 +27,7 @@ export async function editTrip(id, data) {
 };
 
 export async function deleteTrip(id) {
-    return await api.del(host + '/data/catalog/' + id);
+    return await api.del(host + '/delete-trip/' + id);
 };
 
 export async function likeTrip(id, data) {

@@ -1,7 +1,8 @@
 import style from './Home.module.css';
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
+import SpinnerText from '../Spinner/SpinnerText';
 
 
 import collage from '../../Resources/img/love-fishing.png';
@@ -41,10 +42,10 @@ function Main() {
                         </h2>
                         :
                         <h2 className={style["destination-container-title"]}>
-                            There haven't trips yet!
+                            <SpinnerText />
                         </h2>
                 }
-                {
+                {sortedTrips.length > 0 ?
                     sortedTrips.map(trip => {
                         return (
                             <div className={style["destination-box"]} key={trip._id}>
@@ -52,6 +53,8 @@ function Main() {
                             </div>
                         )
                     })
+                    :
+                    <Spinner />
                 }
             </section>
         </section>
