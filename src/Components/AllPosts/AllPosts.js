@@ -3,18 +3,19 @@ import { useState, useEffect } from 'react';
 import style from './AllPosts.module.css';
 
 import { getAll } from '../../service/tripService';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 function AllPosts() {
-
     const [trips, setTrips] = useState([]);
 
     useEffect(() => {
         getAll()
             .then(result => {
                 setTrips(result);
-            });
+            }).catch(err => {
+                console.log(err);
+            })
     }, []);
 
     return (

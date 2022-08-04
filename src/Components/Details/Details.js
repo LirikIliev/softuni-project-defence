@@ -1,69 +1,101 @@
 import style from './Details.module.css';
-import detailsImage from '../../Resources/img/1517770976569c80450696c40b7c8e1982063892bf.jpg'
-import { Link, useParams } from 'react-router-dom';
+
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+
+import { AuthContext } from '../../context/AurhContext';
+import { getCurrent } from '../../service/tripService';
 
 function Details() {
     const { tripId } = useParams();
+    const [trip, setTrip] = useState([]);
+    const [owner, setOwner] = useState(false);
+    const [guest, setGuest] = useState(true);
 
-    console.log(tripId);
+    // const Navigate = useNavigate();
+    const { user } = useContext(AuthContext)
+
+    useEffect(() => {
+        getCurrent(tripId)
+            .then(result => {
+                setTrip(result);
+                if (user._id === result._ownerId) {
+                    setOwner(true);
+                };
+                if (user._id) {
+                    setGuest(false)
+                };
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, []);
+
+    const ownerElement = (
+        <>
+            <Link to={`/edit/${tripId}`}>
+                <button id="edit" className={style["edit"]}>
+                    Edit - <i className="fa-solid fa-pen" />
+                </button>
+            </Link>
+            <Link to={`/delete/${tripId}`}>
+                <button className={style["delete"]}>
+                    Delete - <i className="fa-solid fa-trash" />
+                </button>
+            </Link>
+        </>
+    );
+
+    const guestElement = (
+        <>
+            <Link to={`/like/${tripId}`}>
+                <button className={style["like"]}>
+                    Like - <i className="fa-solid fa-thumbs-up" />
+                </button>
+            </Link>
+        </>
+    );
 
     return (
         <section className={style["details"]}>
             <section className={style["details-container"]}>
                 <div className={style["details-image"]}>
-                    <img src={detailsImage} alt="vatcha dam" />
+                    <img src={trip.imageUrl} alt="vatcha dam" />
                 </div>
                 <article className={style["details-info"]}>
                     <h1 className={style["detailt-info-title"]}>
                         <span className={style["describe"]}>Destination:</span>
-                        Vatcha Dam
+                        {trip.destination}
                     </h1>
                     <h3 className={style["country"]}>
                         <span className={style["describe"]}>Country:</span>
-                        Bulgaria
+                        {trip.country}
                     </h3>
-                    <p className={style["description"]}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-                        perferendis molestias eligendi quisquam molestiae, reprehenderit
-                        delectus excepturi, repudiandae doloremque animi ab. Eligendi nam soluta
-                        mollitia ipsam unde? Facilis neque blanditiis vitae alias libero ad
-                        debitis, mollitia sit fugit dignissimos quasi. Atque doloribus dolores
-                        est at facere enim illum impedit recusandae molestiae, vel excepturi
-                        dolor nesciunt vero porro dolore dignissimos eius voluptatum fuga sint
-                        asperiores eveniet inventore nihil nemo deserunt. Sequi velit nostrum
-                        accusamus dolore neque minus magni, laudantium rem temporibus
-                        reprehenderit voluptate fuga optio dolores illum autem expedita incidunt
-                        itaque quo voluptatum similique dolorem. Impedit distinctio ducimus esse
-                        eos, doloremque exercitationem ullam! Quibusdam veniam quo modi!
-                        Excepturi, perspiciatis? A blanditiis odio iste. Corrupti neque
-                        repellendus ab odit nam dolor sunt reiciendis expedita officia odio
-                        exercitationem nisi, earum necessitatibus voluptatibus
-                    </p>
+                    <p className={style["description"]}>{trip.description}</p>
                     <h3 className={style["author"]}>
                         <span className={style["describe"]}>Author:</span>
-                        Kiril Iliev
+                        {trip.author}
                     </h3>
                     <div className={style["likes"]}>
-                        Likes:<span id="likes"> </span>
+                        Likes:
+                        {trip.likes
+                            ? <span id="likes">{trip.likes.length}</span>
+                            : <span id="likes"> 0</span>
+                        }
                     </div>
                     <div className={style["buttons"]}>
-                        <Link to={`/edit/${tripId}`}>
-                            <button id="edit" className={style["edit"]}>
-                                Edit - <i className="fa-solid fa-pen" />
-                            </button>
-                        </Link>
-                        <button id="delete" className={style["delete"]}>
-                            Delete - <i className="fa-solid fa-trash" />
-                        </button>
-                        <button id="delete" className={style["like"]}>
-                            Like - <i className="fa-solid fa-thumbs-up" />
-                        </button>
+                        {
+                            !guest
+                                ? owner
+                                    ? ownerElement
+                                    : guestElement
+                                : ""
+                        }
                     </div>
                 </article>
             </section>
         </section >
-
-    )
-}
+    );
+};
 
 export default Details;

@@ -14,6 +14,7 @@ import Edit from './Components/Edit/Edit';
 import Details from './Components/Details/Details';
 import AllPosts from "./Components/AllPosts/AllPosts";
 import Logout from "./Components/Logout/Logout";
+import Like from "./Components/Like/Like";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="/create-trip" element={<Create />} />
             <Route path="/edit/:tripId" element={<Edit />} />
             <Route path="/details/:tripId" element={<Details />} />
+            <Route path="/like/:tripId" element={<Like />} />
           </Routes>
         </main>
         <Footer />

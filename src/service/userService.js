@@ -69,6 +69,5 @@ export async function registerUser(data) {
 
 export async function logoutUser() {
     const result = await get(host + '/user/logout');
-
     return result;
 }

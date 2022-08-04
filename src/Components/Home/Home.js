@@ -1,13 +1,25 @@
 import style from './Home.module.css';
 
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 import collage from '../../Resources/img/love-fishing.png';
-import Dospat from '../../Resources/img/travel-image-213.jpg';
-import Vatcha from '../../Resources/img/maxresdefault.jpg';
-import MechaPoliana from '../../Resources/img/1517770976569c80450696c40b7c8e1982063892bf.jpg';
+import { getSortedByDate } from '../../service/tripService';
+import TripElement from './TripElement/TripElement';
 
 function Main() {
+
+    const [sortedTrips, setSortedTrips] = useState([]);
+    useEffect(() => {
+        getSortedByDate()
+            .then(result => {
+                setSortedTrips(result);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, [])
 
     return (
         <section className={style["main-section-box"]}>
@@ -21,46 +33,26 @@ function Main() {
                 <img src={collage} className={style["company-image"]} alt="fish collage pictures" />
             </section>
             <section className={style["destination-container"]}>
-                <h2 className={style["destination-container-title"]}>
-                    The last three destinations
-                </h2>
-                <div className={style["destination-box"]}>
-                    <img src={Dospat} className={style["destination-image"]} alt="Image of the some dam" />
-                    <h2 className={style["destination-title"]}>
-                        <span className={style["my-post-label"]}>Country:</span>Bulgaria
-                    </h2>
-                    <h4 className={style["destination-title"]}>
-                        <span className={style["my-post-label"]}>Destination:</span>Dospat Dam
-                    </h4>
-                    <Link to={"/details/123456asda"}>
-                        <button className={style["destination-link"]}>Details</button>
-                    </Link>
-                </div>
-                <div className={style["destination-box"]}>
-                    <img src={Vatcha} className={style["destination-image"]} alt="Image of the some dam" />
-                    <h2 className={style["destination-title"]}>
-                        <span className={style["my-post-label"]}>Country:</span> Bulgaria
-                    </h2>
-                    <h4 className={style["destination-title"]}>
-                        <span className={style["my-post-label"]}>Destination: </span>Vatcha Dam
-                    </h4>
-                    <Link to={"/details/123456123"}>
-                        <button className={style["destination-link"]}>Details</button>
-                    </Link>
-                </div>
-                <div className={style["destination-box"]}>
-                    <img src={MechaPoliana} className={style["destination-image"]}
-                        alt="Image of the some dam" />
-                    <h2 className={style["destination-title"]}>
-                        <span className={style["my-post-label"]}>Country: </span>Bulgaria
-                    </h2>
-                    <h4 className={style["destination-title"]}>
-                        <span className={style["my-post-label"]}>Destination: </span>Metcha Poliana
-                    </h4>
-                    <Link to={"/details/123456"}>
-                        <button className={style["destination-link"]}>Details</button>
-                    </Link>
-                </div>
+                {
+                    sortedTrips.length > 0
+                        ?
+                        <h2 className={style["destination-container-title"]}>
+                            The last three destinations
+                        </h2>
+                        :
+                        <h2 className={style["destination-container-title"]}>
+                            There haven't trips yet!
+                        </h2>
+                }
+                {
+                    sortedTrips.map(trip => {
+                        return (
+                            <div className={style["destination-box"]} key={trip._id}>
+                                <TripElement trip={trip} />
+                            </div>
+                        )
+                    })
+                }
             </section>
         </section>
     )
