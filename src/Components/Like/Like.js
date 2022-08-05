@@ -25,7 +25,6 @@ function Like() {
                 }).catch(err => {
                     console.log(err);
                 })
-            Navigate(`/details/${tripId}`);
         }
     });
 

@@ -1,14 +1,15 @@
 import style from './MyPosts.module.css';
 
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import MyPostElement from './MyPostsElement/myPostsElement';
 import { getAllUserTrips } from '../../service/tripService';
+import MyPostElement from './MyPostsElement/myPostsElement';
 import Spinner from '../Spinner/Spinner';
 import SpinnerText from '../Spinner/SpinnerText';
-
 function MyPosts() {
     const [myTrips, setMyTrips] = useState([]);
+    const Navigation = useNavigate()
 
     useEffect(() => {
         getAllUserTrips()
@@ -16,6 +17,7 @@ function MyPosts() {
                 setMyTrips(result);
             }).catch(err => {
                 console.log(err);
+                Navigation('/404-page-not-found');
             });
     }, [])
 

@@ -43,7 +43,7 @@ function Details() {
             })
             .catch(err => {
                 console.log(err);
-                Navigate('/');
+                Navigate('/404-page-not-found');
             })
     }, []);
 

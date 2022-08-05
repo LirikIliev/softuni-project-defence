@@ -70,16 +70,15 @@ function Edit() {
         };
     };
 
-    function onSubmitEditedValue(e) {
+    async function onSubmitEditedValue(e) {
         e.preventDefault();
-        editTrip(tripId, editValue)
-            .then(result => {
-                console.log(result);
-                // Navigator(`/details/${tripId}`)
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        try {
+            await editTrip(tripId, editValue);
+            Navigator(`/details/${tripId}`);
+        } catch (err) {
+            console.log(err);
+            Navigator('/');
+        }
     };
 
     useEffect(() => {

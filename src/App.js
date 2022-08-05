@@ -16,6 +16,7 @@ import AllPosts from "./Components/AllPosts/AllPosts";
 import Logout from "./Components/Logout/Logout";
 import Like from "./Components/Like/Like";
 import Delete from "./Components/Delete/Delete";
+import PageNotFound from "./Components/404NotFound/PageNotFound";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useLike } from "./hooks/useLike";
@@ -56,6 +57,7 @@ function App() {
               <Route path="/details/:tripId" element={<Details />} />
               <Route path="/delete/:tripId" element={<Delete />} />
               <Route path="/like/:tripId" element={<Like />} />
+              <Route path="/404-page-not-found" element={<PageNotFound />} />
             </Routes>
           </main>
           <Footer />
