@@ -1,5 +1,13 @@
-import style from './Footer.module.css'
+import style from './Footer.module.css';
+
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { AuthContext } from '../../context/AurhContext';
+
 function Footer() {
+
+    const { user } = useContext(AuthContext);
 
     return (
         <footer className={style["footer-box"]} >
@@ -44,11 +52,23 @@ function Footer() {
                     </ul>
                 </aside>
                 <aside className={style["footer-fast-links-box"]}>
-                    <h4 className={style["footer-links-title"]}>Contact Us</h4>
+                    <h4 className={style["footer-links-title"]}>Go to</h4>
                     <ul className={style["footer-links-navigation"]}>
-                        <li className={`${style["footer-quick-links"]} ${style["destinations"]}`}>
-                            <a href="#">All Destinations</a>
+                        <li className={`${style["footer-quick-links"]}, ${style["destination"]}`}>
+                            <Link to="/all-posts">All Destinations</Link>
                         </li>
+                        {
+                            Object.values(user).length > 0
+                                ? <>
+                                    <li className={`${style["footer-quick-links"]}, ${style["destination"]}`}>
+                                        <Link to="/my-posts">My Destinations</Link>
+                                    </li>
+                                    <li className={`${style["footer-quick-links"]}, ${style["destination"]}`}>
+                                        <Link to="/create-trip">Create Destination</Link>
+                                    </li>
+                                </>
+                                : ""
+                        }
                     </ul>
                     <ul className={style["footer-social-media-navigation"]}>
                         <li className={style["footer-quick-links"]}>

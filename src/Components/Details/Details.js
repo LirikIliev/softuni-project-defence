@@ -4,9 +4,10 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 
 import { AuthContext } from '../../context/AurhContext';
-import { likeTrip, dislikeTrip } from '../../service/tripService';
+import { ErrorContext } from '../../context/ErrorContext';
 
 import { getCurrent } from '../../service/tripService';
+import { likeTrip, dislikeTrip } from '../../service/tripService';
 
 import Spinner from '../Spinner/Spinner';
 import SpinnerText from '../Spinner/SpinnerText';
@@ -20,6 +21,7 @@ function Details() {
 
     const Navigate = useNavigate();
     const { user } = useContext(AuthContext);
+    const { setError } = useContext(ErrorContext)
     useEffect(() => {
         getCurrent(tripId)
             .then(result => {
@@ -38,7 +40,7 @@ function Details() {
                 };
             })
             .catch(err => {
-                console.log(err);
+                setError(err);
                 Navigate('/404-page-not-found');
             });
     }, [liked]);
@@ -49,7 +51,7 @@ function Details() {
                 .then(result => {
                     setLiked(true);
                 }).catch(err => {
-                    console.log(err);
+                    setError(err);
                     Navigate('/404-page-not-found');
                 })
         } else {
@@ -57,8 +59,8 @@ function Details() {
                 .then(result => {
                     setLiked(false)
                 }).catch(err => {
+                    setError(err);
                     Navigate('/404-page-not-found');
-                    console.log(err);
                 })
         };
     };

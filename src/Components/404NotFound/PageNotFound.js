@@ -1,11 +1,15 @@
 import style from './PageNotFound.module.css';
 
-import notFoundPicture from "../../Resources/img/page-not-found.png"
+import notFoundPicture from "../../Resources/img/page-not-found.png";
 
+import { ErrorContext } from '../../context/ErrorContext';
+
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function PageNotFound() {
     const Navigator = useNavigate();
+    const { error } = useContext(ErrorContext);
 
     function onClickNavigate(e) {
         Navigator('/');
@@ -21,9 +25,14 @@ function PageNotFound() {
             </header>
             <section className={style["not-fount-info"]}>
                 <h2 className={style["not-found-title-one"]}>404 oops!!!</h2>
-                <h2 className={style["not-found-title-one"]}>
-                    We couldn't find the page you searched for!
-                </h2>
+                {Object.values(error).length > 0
+                    ? <h2 className={style["not-found-title-one"]}>
+                        {error.message}
+                    </h2>
+                    : <h2 className={style["not-found-title-one"]}>
+                        We couldn't find the page you searched for!
+                    </h2>
+                }
                 <h3 className={style["not-found-title-two"]}>Sorry, but we have problem!</h3>
                 <button
                     className={style["not-found-button"]}

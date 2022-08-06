@@ -2,6 +2,7 @@
   footer.footer-box {
     background-color: #303030;
     font-size: 1.1em;
+    text-align: center;
   }
 
   footer.footer-box a {
@@ -32,6 +33,7 @@
   footer.footer-box section.footer-navigation aside.footer-contact-box {
     display: flex;
     flex-direction: column;
+    text-align: start;
   }
 
   footer.footer-box section.footer-navigation aside.footer-contact-box ul.footer-contact-navigation li.footer-contact-menu {
@@ -41,6 +43,10 @@
   footer.footer-box section.footer-navigation aside.footer-contact-box ul.footer-contact-navigation li.footer-contact-menu span.contact {
     margin-right: 5px;
     font-weight: bold;
+  }
+
+  footer.footer-box section.footer-navigation aside.footer-fast-links-box li.destination {
+    margin: 8px 0;
   }
 
   footer.footer-box section.footer-navigation aside.footer-fast-links-box li:hover {
@@ -75,6 +81,7 @@
   footer.footer-box {
     background-color: #303030;
     font-size: 0.9em;
+    text-align: center;
   }
 
   footer.footer-box a {
@@ -118,6 +125,10 @@
 
   footer.footer-box section.footer-navigation aside.footer-contact-box ul.footer-contact-navigation li.footer-contact-menu span.contact {
     font-weight: bold;
+  }
+
+  footer.footer-box section.footer-navigation aside.footer-fast-links-box li.destination {
+    margin: 0 0 8px 0;
   }
 
   footer.footer-box section.footer-navigation aside.footer-fast-links-box li:hover {

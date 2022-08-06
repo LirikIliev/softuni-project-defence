@@ -38,7 +38,7 @@ function Main() {
                     sortedTrips.length > 0
                         ?
                         <h2 className={style["destination-container-title"]}>
-                            The last three destinations
+                            The newest three destination
                         </h2>
                         :
                         <h2 className={style["destination-container-title"]}>
