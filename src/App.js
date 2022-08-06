@@ -16,19 +16,12 @@ import AllPosts from "./Components/AllPosts/AllPosts";
 import Logout from "./Components/Logout/Logout";
 import Delete from "./Components/Delete/Delete";
 import PageNotFound from "./Components/404NotFound/PageNotFound";
-import Like from "./Components/Like/Like";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { useLike } from "./hooks/useLike";
 
 function App() {
   const sessionName = "user";
   const [auth, setAuth] = useLocalStorage(sessionName, {});
-  const [liked, setLiked] = useLike();
-
-  const userLikedTrip = (value) => {
-    setLiked(value);
-  };
 
   const userLogout = () => {
     setAuth({});
@@ -40,28 +33,25 @@ function App() {
 
   return (
     <>
-      <LikedContext.Provider value={{ userLikedTrip, liked }}>
-        <AuthContext.Provider value={{ user: auth, userLogin, userLogout, sessionName }}>
-          <Header />
-          <main className="main-section">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/all-posts" element={<AllPosts />} />
-              <Route path="/my-posts" element={<MyPosts />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/create-trip" element={<Create />} />
-              <Route path="/edit/:tripId" element={<Edit />} />
-              <Route path="/details/:tripId" element={<Details />} />
-              <Route path="/delete/:tripId" element={<Delete />} />
-              <Route path="/like/:tripId" element={<Like />} />
-              <Route path="/404-page-not-found" element={<PageNotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </AuthContext.Provider>
-      </LikedContext.Provider>
+      <AuthContext.Provider value={{ user: auth, userLogin, userLogout, sessionName }}>
+        <Header />
+        <main className="main-section">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/all-posts" element={<AllPosts />} />
+            <Route path="/my-posts" element={<MyPosts />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/create-trip" element={<Create />} />
+            <Route path="/edit/:tripId" element={<Edit />} />
+            <Route path="/details/:tripId" element={<Details />} />
+            <Route path="/delete/:tripId" element={<Delete />} />
+            <Route path="/404-page-not-found" element={<PageNotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </AuthContext.Provider>
     </>
   );
 }

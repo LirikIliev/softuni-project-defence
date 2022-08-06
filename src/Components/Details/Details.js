@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 
 import { AuthContext } from '../../context/AurhContext';
-import { LikedContext } from '../../context/LikedContext';
+import { likeTrip, dislikeTrip } from '../../service/tripService';
 
 import { getCurrent } from '../../service/tripService';
 
@@ -16,10 +16,10 @@ function Details() {
     const [trip, setTrip] = useState({});
     const [owner, setOwner] = useState(false);
     const [guest, setGuest] = useState(true);
+    const [liked, setLiked] = useState(false);
 
     const Navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    const { liked, userLikedTrip } = useContext(LikedContext);
     useEffect(() => {
         getCurrent(tripId)
             .then(result => {
@@ -34,16 +34,35 @@ function Details() {
                 };
 
                 if (isItLiked) {
-                    userLikedTrip(true);
-                } else {
-                    userLikedTrip(false);
+                    setLiked(true);
                 };
             })
             .catch(err => {
                 console.log(err);
                 Navigate('/404-page-not-found');
-            })
-    }, []);
+            });
+    }, [liked]);
+
+    function OnClickLikeDislike() {
+        if (!liked) {
+            likeTrip(tripId, user)
+                .then(result => {
+                    setLiked(true);
+                }).catch(err => {
+                    console.log(err);
+                    Navigate('/404-page-not-found');
+                })
+        } else {
+            dislikeTrip(tripId, user)
+                .then(result => {
+                    setLiked(false)
+                }).catch(err => {
+                    Navigate('/404-page-not-found');
+                    console.log(err);
+                })
+        };
+    };
+
     const ownerElement = (
         <>
             <Link to={`/edit/${tripId}`}>
@@ -60,18 +79,16 @@ function Details() {
     );
 
     const guestElement = (
-        <Link to={`/like/${tripId}`}>
-            <>
-                <button className={style["like"]}>
-                    Like -
-                    {
-                        liked
-                            ? <i className="fa-solid fa-thumbs-up" style={{ color: 'green', width: '50px' }} />
-                            : <i className="fa-solid fa-thumbs-up" style={{ width: '50px' }} />
-                    }
-                </button>
-            </>
-        </Link>
+        <>
+            <button className={style["like"]} onClick={OnClickLikeDislike}>
+                Like -
+                {
+                    liked
+                        ? <i className="fa-solid fa-thumbs-up" style={{ color: 'green', width: '50px' }} />
+                        : <i className="fa-solid fa-thumbs-up" style={{ width: '50px' }} />
+                }
+            </button>
+        </>
     );
     return (
         <section className={style["details"]}>

@@ -1,7 +1,6 @@
 import { useState } from "react";
-
-export const useLike = () => {
-    const [logged, setLogged] = useState(null);
+function useLike() {
+    const [logged, setLogged] = useState(false);
 
     const setLoggedUser = (value) => {
         setLogged(value);
@@ -13,3 +12,4 @@ export const useLike = () => {
     ];
 }
 
+export default useLike;
