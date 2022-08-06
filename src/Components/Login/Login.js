@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 import { loginUser } from '../../service/userService';
+
 import { AuthContext } from '../../context/AurhContext';
 
 import style from './Login.module.css';
@@ -57,7 +57,6 @@ function Login() {
             Navigate("/")
         } catch (err) {
             Navigate('/register')
-            console.log(err.message);
         }
     };
 

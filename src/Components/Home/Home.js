@@ -1,26 +1,35 @@
 import style from './Home.module.css';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Spinner from '../Spinner/Spinner';
 import SpinnerText from '../Spinner/SpinnerText';
 
-
-import collage from '../../Resources/img/love-fishing.png';
 import { getSortedByDate } from '../../service/tripService';
+
+import { ErrorContext } from '../../context/ErrorContext';
+import collage from '../../Resources/img/love-fishing.png';
 import TripElement from './TripElement/TripElement';
 
+
 function Main() {
+    const { setError } = useContext(ErrorContext);
 
     const [sortedTrips, setSortedTrips] = useState([]);
     useEffect(() => {
         getSortedByDate()
             .then(result => {
                 setSortedTrips(result);
+                setInterval(() => {
+                    if (result.length <= 0) {
+                        setSortedTrips('');
+                    }
+                }, 6000);
             })
             .catch(err => {
-                console.log(err);
-            })
-    }, [])
+                setError(err);
+            });
+    }, []);
+    console.log(sortedTrips.length <= 0);
 
     return (
         <section className={style["main-section-box"]}>
@@ -34,7 +43,8 @@ function Main() {
                 <img src={collage} className={style["company-image"]} alt="fish collage pictures" />
             </section>
             <section className={style["destination-container"]}>
-                {
+                {Array.isArray(sortedTrips)
+                    ?
                     sortedTrips.length > 0
                         ?
                         <h2 className={style["destination-container-title"]}>
@@ -44,17 +54,25 @@ function Main() {
                         <h2 className={style["destination-container-title"]}>
                             <SpinnerText />
                         </h2>
-                }
-                {sortedTrips.length > 0 ?
-                    sortedTrips.map(trip => {
-                        return (
-                            <div className={style["destination-box"]} key={trip._id}>
-                                <TripElement trip={trip} />
-                            </div>
-                        )
-                    })
                     :
-                    <Spinner />
+                    <h2 className={style["destination-container-title"]}>
+                        There have been no shared trips yet!
+                    </h2>
+                }
+                {
+                    Array.isArray(sortedTrips)
+                        ?
+                        sortedTrips.length > 0 ?
+                            sortedTrips.map(trip => {
+                                return (
+                                    <div className={style["destination-box"]} key={trip._id}>
+                                        <TripElement trip={trip} />
+                                    </div>
+                                )
+                            })
+                            :
+                            <Spinner />
+                        : ""
                 }
             </section>
         </section>

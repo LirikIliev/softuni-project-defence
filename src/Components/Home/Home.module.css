@@ -53,6 +53,7 @@
     flex-wrap: wrap;
     width: 60%;
     justify-content: space-around;
+    min-height: 400px;
     align-items: center;
     gap: 50px;
     align-self: center;

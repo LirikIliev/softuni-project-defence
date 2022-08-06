@@ -1,12 +1,15 @@
 import style from "./Create.module.css";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { ErrorContext } from "../../context/ErrorContext";
 
 import { createTrip } from "../../service/tripService";
 
 function Create() {
     const Navigate = useNavigate();
+    const { setError } = useContext(ErrorContext);
 
     const [value, setValue] = useState(
         {
@@ -37,6 +40,7 @@ function Create() {
                 await createTrip(value);
                 Navigate('/');
             } catch (err) {
+                setError(err);
                 console.log(err.message);
             }
         }
