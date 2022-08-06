@@ -71,12 +71,19 @@ function Login() {
                         className={`${style["login-label"]} ${style["required"]}`}>
                         Email:
                     </label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={onChangeLoginValue}
-                        onBlur={validatorFunction} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            onChange={onChangeLoginValue}
+                            onBlur={validatorFunction}
+                        />
+                        {!invalidLogin.email
+                            ? <div className={style["error-box"]}>Please you correct email address!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["login-form-box"]}>
                     <label
@@ -84,11 +91,18 @@ function Login() {
                         className={`${style["login-label"]} ${style["required"]}`}>
                         Password:
                     </label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password" onChange={onChangeLoginValue}
-                        onBlur={validatorFunction} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password" onChange={onChangeLoginValue}
+                            onBlur={validatorFunction}
+                        />
+                        {!invalidLogin.password
+                            ? <div className={style["error-box"]}>Please fill the field correctly!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={`${style["login-form-box"]} ${style["submit"]}`}>
                     {isValid

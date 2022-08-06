@@ -102,13 +102,20 @@ function Register() {
                         className={`${style["register-label"]} ${style["required"]}`}>
                         First name:
                     </label>
-                    <input
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        onChange={onChangeValue}
-                        onBlur={(e) => validatorFunction(e)}
-                        value={value.firstName} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            onChange={onChangeValue}
+                            onBlur={(e) => validatorFunction(e)}
+                            value={value.firstName}
+                        />
+                        {!validate.firstName
+                            ? <div className={style["error-box"]}>Use at least 3 characters long first name!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["register-form-box"]}>
                     <label
@@ -116,13 +123,20 @@ function Register() {
                         className={`${style["register-label"]} ${style["required"]}`}>
                         Last name:
                     </label>
-                    <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        onChange={onChangeValue}
-                        onBlur={(e) => validatorFunction(e)}
-                        value={value.lastName} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="lastName"
+                            id="lastName"
+                            onChange={onChangeValue}
+                            onBlur={(e) => validatorFunction(e)}
+                            value={value.lastName}
+                        />
+                        {!validate.lastName
+                            ? <div className={style["error-box"]}>Use at least 3 characters long last name!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["register-form-box"]}>
                     <label
@@ -130,13 +144,20 @@ function Register() {
                         className={`${style["register-label"]} ${style["required"]}`}>
                         Email:
                     </label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={onChangeValue}
-                        onBlur={(e) => validatorFunction(e)}
-                        value={value.email} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            onChange={onChangeValue}
+                            onBlur={(e) => validatorFunction(e)}
+                            value={value.email}
+                        />
+                        {!validate.email
+                            ? <div className={style["error-box"]}>Use correct email address!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["register-form-box"]}>
                     <label
@@ -144,13 +165,20 @@ function Register() {
                         className={`${style["register-label"]} ${style["required"]}`}>
                         Password:
                     </label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        onChange={onChangeValue}
-                        onBlur={(e) => validatorFunction(e)}
-                        value={value.password} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            onChange={onChangeValue}
+                            onBlur={(e) => validatorFunction(e)}
+                            value={value.password}
+                        />
+                        {!validate.password
+                            ? <div className={style["error-box"]}>Use at least 3 character long password!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["register-form-box"]}>
                     <label
@@ -158,13 +186,20 @@ function Register() {
                         className={`${style["register-label"]} ${style["required"]}`}>
                         Repeat password:
                     </label>
-                    <input
-                        type="password"
-                        name="repeatPassword"
-                        id="repeatPassword"
-                        onChange={onChangeValue}
-                        onBlur={(e) => validatorFunction(e)}
-                        value={value.repeatPassword} />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="password"
+                            name="repeatPassword"
+                            id="repeatPassword"
+                            onChange={onChangeValue}
+                            onBlur={(e) => validatorFunction(e)}
+                            value={value.repeatPassword}
+                        />
+                        {!validate.repeatPassword
+                            ? <div className={style["error-box"]}>Repeat you password please!!!</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={`${style["register-form-box"]} ${style["submit"]}`}>
                     {

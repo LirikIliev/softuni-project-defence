@@ -6,7 +6,7 @@
     padding: 10px;
     margin: 100px auto 0 auto;
     width: 500px;
-    height: 550px;
+    min-height: 550px;
     background: rgba(48, 48, 48, 0.9);
     border-radius: 25px;
     box-shadow: 12px 10px 10px -8px;
@@ -20,7 +20,7 @@
   section.registration form.registration-form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     color: white;
     font-size: 1.6em;
   }
@@ -37,12 +37,21 @@
   section.registration form.registration-form div.register-form-box label.required:after {
     content: ' *';
     color: red;
+    font-size: 18px;
+    margin-right: 5px;
   }
 
-  section.registration form.registration-form div.register-form-box input {
+  section.registration form.registration-form div.register-form-box div.value-box input {
     border-radius: 25px;
     height: 35px;
     width: 230px;
+  }
+
+  section.registration form.registration-form div.register-form-box div.value-box div.error-box {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.6em;
+    color: red;
   }
 
   section.registration form.registration-form div.register-form-box input.submit-button {
@@ -83,14 +92,15 @@
   section.registration h1.registration-title {
     color: white;
     margin: 10px 0 30px 0;
+    font-size: 1.2em;
   }
 
   section.registration form.registration-form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     color: white;
-    font-size: 1.6em;
+    font-size: 1.3em;
   }
 
   section.registration form.registration-form div.register-form-box {
@@ -100,15 +110,24 @@
     align-items: center;
   }
 
-  section.registration form.registration-form div.register-form-box label.required:after {
-    content: ' *';
-    color: red;
-  }
-
-  section.registration form.registration-form div.register-form-box input {
+  section.registration form.registration-form div.register-form-box div.value-box input {
     border-radius: 25px;
     height: 35px;
     width: 230px;
+  }
+
+  section.registration form.registration-form div.register-form-box div.value-box div.error-box {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.7em;
+    color: red;
+  }
+
+  section.registration form.registration-form div.register-form-box label.required:after {
+    content: ' *';
+    color: red;
+    font-size: 15px;
+    margin-right: 5px;
   }
 
   section.registration form.registration-form div.register-form-box input.submit-button {
@@ -116,6 +135,7 @@
     flex-basis: 30px;
     min-height: 40px;
     border-radius: 15px;
+    min-width: 150px;
   }
 
   section.registration form.registration-form div.register-form-box input.submit-button:hover {

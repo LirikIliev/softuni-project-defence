@@ -1,13 +1,16 @@
 import style from './Edit.module.css';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
+import { ErrorContext } from '../../context/ErrorContext';
 
 import { editTrip, getCurrent } from '../../service/tripService';
 
 function Edit() {
     const Navigator = useNavigate()
     const { tripId } = useParams();
+    const { setError } = useContext(ErrorContext);
     const [editValue, setEditValue] = useState(
         {
             author: '',
@@ -76,8 +79,8 @@ function Edit() {
             await editTrip(tripId, editValue);
             Navigator(`/details/${tripId}`);
         } catch (err) {
-            console.log(err);
-            Navigator('/');
+            setError(err);
+            Navigator('/404-page-not-found');
         }
     };
 
@@ -106,69 +109,112 @@ function Edit() {
                     <label htmlFor="author" className={`${style["edit-label"]} ${style["required"]}`}>
                         Author:
                     </label>
-                    <input
-                        type="text"
-                        name="author"
-                        id="author"
-                        onChange={onChangeValue}
-                        value={editValue.author}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="author"
+                            id="author"
+                            onChange={onChangeValue}
+                            value={editValue.author}
+                            onBlur={validator}
+                        />
+                        {!validatorValue.author
+                            ? <div className={style["error-box"]}>It must be at least 5 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["edit-form-box"]}>
                     <label htmlFor="country" className={`${style["edit-label"]} ${style["required"]}`}>
                         Country:
                     </label>
-                    <input
-                        type="text"
-                        name="country"
-                        id="country"
-                        onChange={onChangeValue}
-                        value={editValue.country}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="country"
+                            id="country"
+                            onChange={onChangeValue}
+                            value={editValue.country}
+                            onBlur={validator}
+                        />
+                        {!validatorValue.country
+                            ? <div className={style["error-box"]}>It must be at least 4 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["edit-form-box"]}>
                     <label htmlFor="destination" className={`${style["edit-label"]} ${style["required"]}`}>
                         Destination name:
                     </label>
-                    <input
-                        type="text"
-                        name="destination"
-                        id="destination"
-                        onChange={onChangeValue}
-                        value={editValue.destination}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="destination"
+                            id="destination"
+                            onChange={onChangeValue}
+                            value={editValue.destination}
+                            onBlur={validator}
+                        />
+                        {!validatorValue.destination
+                            ? <div className={style["error-box"]}>It must be at least 3 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["edit-form-box"]}>
                     <label htmlFor="imageUrl" className={`${style["edit-label"]} ${style["required"]}`}>
                         Image Url:
                     </label>
-                    <input
-                        type="url"
-                        name="imageUrl"
-                        id="imageUrl"
-                        onChange={onChangeValue}
-                        value={editValue.imageUrl}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="url"
+                            name="imageUrl"
+                            id="imageUrl"
+                            onChange={onChangeValue}
+                            value={editValue.imageUrl}
+                            onBlur={validator}
+                        />
+                        {!validatorValue.imageUrl
+                            ? <div className={style["error-box"]}>It must be URL address</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["edit-form-box"]}>
                     <label htmlFor="description" className={`${style["edit-label"]} ${style["required"]}`}>
                         Description:
                     </label>
-                    <textarea
-                        name="description"
-                        id="description"
-                        cols={30}
-                        rows={3}
-                        onChange={onChangeValue}
-                        value={editValue.description}
-                    />
+                    <div className={style["value-box"]}>
+                        <textarea
+                            name="description"
+                            id="description"
+                            cols={30}
+                            rows={3}
+                            onChange={onChangeValue}
+                            value={editValue.description}
+                            onBlur={validator}
+                        />
+                        {!validatorValue.description
+                            ? <div className={style["error-box"]}>It must be at least 20 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={`${style["edit-form-box"]} ${style["submit"]}`}>
-                    <input
-                        type="submit"
-                        className={style["submit-button"]}
-                        style={{ fontWeight: 'bold' }}
-                    />
+                    {!isValid
+                        ? <input
+                            type="submit"
+                            className={style["submit-button"]}
+                            style={{ fontWeight: 'bold' }}
+                        />
+                        : <input
+                            type="submit"
+                            className={style["submit-button"]}
+                            style={{ fontWeight: 'bold' }}
+                            disabled
+                        />
+                    }
                 </div>
             </form>
         </section>

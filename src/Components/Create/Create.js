@@ -90,68 +90,98 @@ function Create() {
                     <label htmlFor="author" className={`${style["create-label"]} ${style["required"]}`}>
                         Author:
                     </label>
-                    <input
-                        type="text"
-                        name="author"
-                        onChange={onChangeValue}
-                        onBlur={validator}
-                        id="author"
-                        value={value.author}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="author"
+                            onChange={onChangeValue}
+                            onBlur={validator}
+                            id="author"
+                            value={value.author}
+                        />
+                        {!validatorValue.author
+                            ? <div className={style["error-box"]}>It must be at least 5 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["create-form-box"]}>
                     <label htmlFor="country" className={`${style["create-label"]} ${style["required"]}`}>
                         Country:
                     </label>
-                    <input
-                        type="text"
-                        name="country"
-                        onChange={onChangeValue}
-                        onBlur={validator}
-                        id="country"
-                        value={value.country}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="country"
+                            onChange={onChangeValue}
+                            onBlur={validator}
+                            id="country"
+                            value={value.country}
+                        />
+                        {!validatorValue.country
+                            ? <div className={style["error-box"]}>It must be at least 4 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["create-form-box"]}>
                     <label htmlFor="destination" className={`${style["create-label"]} ${style["required"]}`}>
                         Destination name:
                     </label>
-                    <input
-                        type="text"
-                        name="destination"
-                        onChange={onChangeValue}
-                        onBlur={validator}
-                        id="destination"
-                        value={value.destination}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="text"
+                            name="destination"
+                            onChange={onChangeValue}
+                            onBlur={validator}
+                            id="destination"
+                            value={value.destination}
+                        />
+                        {!validatorValue.destination
+                            ? <div className={style["error-box"]}>It must be at least 3 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["create-form-box"]}>
                     <label htmlFor="imageUrl" className={`${style["create-label"]} ${style["required"]}`}>
                         Image Url:
                     </label>
-                    <input
-                        type="url"
-                        name="imageUrl"
-                        onChange={onChangeValue}
-                        onBlur={validator}
-                        id="imageUrl"
-                        value={value.imageUrl}
-                    />
+                    <div className={style["value-box"]}>
+                        <input
+                            type="url"
+                            name="imageUrl"
+                            onChange={onChangeValue}
+                            onBlur={validator}
+                            id="imageUrl"
+                            value={value.imageUrl}
+                        />
+                        {!validatorValue.imageUrl
+                            ? <div className={style["error-box"]}>It must be URL address</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={style["create-form-box"]}>
                     <label htmlFor="description" className={`${style["create-label"]} ${style["required"]}`}>
                         Description:
                     </label>
-                    <textarea
-                        name="description"
-                        id="description"
-                        cols={30}
-                        rows={3}
-                        defaultValue={""}
-                        onChange={onChangeValue}
-                        onBlur={validator}
-                        textarea={value.description}
-                    />
+                    <div className={style["value-box"]}>
+                        <textarea
+                            name="description"
+                            id="description"
+                            cols={30}
+                            rows={3}
+                            defaultValue={""}
+                            onChange={onChangeValue}
+                            onBlur={validator}
+                            textarea={value.description}
+                        />
+                        {!validatorValue.description
+                            ? <div className={style["error-box"]}>It must be at least 20 characters</div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className={`${style["create-form-box"]} ${style["submit"]}`}>
                     {isValid
