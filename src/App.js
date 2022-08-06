@@ -14,13 +14,12 @@ import Edit from './Components/Edit/Edit';
 import Details from './Components/Details/Details';
 import AllPosts from "./Components/AllPosts/AllPosts";
 import Logout from "./Components/Logout/Logout";
-import Like from "./Components/Like/Like";
 import Delete from "./Components/Delete/Delete";
 import PageNotFound from "./Components/404NotFound/PageNotFound";
+import Like from "./Components/Like/Like";
 
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useLike } from "./hooks/useLike";
-
 
 function App() {
   const sessionName = "user";
@@ -41,7 +40,7 @@ function App() {
 
   return (
     <>
-      <LikedContext.Provider value={{ liked, userLikedTrip }}>
+      <LikedContext.Provider value={{ userLikedTrip, liked }}>
         <AuthContext.Provider value={{ user: auth, userLogin, userLogout, sessionName }}>
           <Header />
           <main className="main-section">

@@ -1,8 +1,15 @@
 import style from './PageNotFound.module.css';
+
 import notFoundPicture from "../../Resources/img/page-not-found.png"
 
-function PageNotFound() {
+import { useNavigate } from 'react-router-dom';
 
+function PageNotFound() {
+    const Navigator = useNavigate();
+
+    function onClickNavigate(e) {
+        Navigator('/');
+    }
     return (
         <section className={style["page-not-found-container"]}>
             <header className={style["image"]}>
@@ -17,10 +24,13 @@ function PageNotFound() {
                 <h2 className={style["not-found-title-one"]}>
                     We couldn't find the page you searched for!
                 </h2>
-                <h3 className={style["not-found-title-two"]}>Sorry, but we have </h3>
-                <button className={style["not-found-button"]}>go to home page</button>
+                <h3 className={style["not-found-title-two"]}>Sorry, but we have problem!</h3>
+                <button
+                    className={style["not-found-button"]}
+                    onClick={onClickNavigate}
+                >go to home page</button>
             </section>
-        </section>
+        </section >
     );
 };
 

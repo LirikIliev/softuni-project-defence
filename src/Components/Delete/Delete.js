@@ -7,8 +7,13 @@ function Delete() {
     const { tripId } = useParams();
     const Navigator = useNavigate();
     useEffect(() => {
-        deleteTrip(tripId);
-        Navigator('/my-posts');
+        deleteTrip(tripId)
+            .then(result => {
+                Navigator('/my-posts');
+            }).catch(err => {
+                console.log(err);
+                Navigator('/404-page-not-found');
+            })
     });
 
     return null;

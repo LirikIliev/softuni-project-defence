@@ -93,8 +93,8 @@ function Edit() {
                 };
                 setEditValue(state => ({ ...state, ...result }))
             }).catch(err => {
-                Navigator('/')
                 console.log(err);
+                Navigator('/404-page-not-found');
             });
     }, []);
 

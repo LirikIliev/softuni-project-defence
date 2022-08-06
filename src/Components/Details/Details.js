@@ -7,35 +7,33 @@ import { AuthContext } from '../../context/AurhContext';
 import { LikedContext } from '../../context/LikedContext';
 
 import { getCurrent } from '../../service/tripService';
-import { useLike } from '../../hooks/useLike';
+
+import Spinner from '../Spinner/Spinner';
+import SpinnerText from '../Spinner/SpinnerText';
 
 function Details() {
     const { tripId } = useParams();
-    const [trip, setTrip] = useState([]);
+    const [trip, setTrip] = useState({});
     const [owner, setOwner] = useState(false);
     const [guest, setGuest] = useState(true);
 
-    const [liked, setLiked] = useLike();
-
     const Navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    const { userLikedTrip } = useContext(LikedContext);
-
+    const { liked, userLikedTrip } = useContext(LikedContext);
     useEffect(() => {
         getCurrent(tripId)
             .then(result => {
+                const isItLiked = result.likes.some(userId => userId == user._id);
                 setTrip(result);
-
-                const isHeLikedIt = result.likes.some(userId => userId == user._id);
-                setLiked(isHeLikedIt);
-
                 if (user._id === result._ownerId) {
                     setOwner(true);
                 };
+
                 if (user._id) {
-                    setGuest(false)
+                    setGuest(false);
                 };
-                if (isHeLikedIt) {
+
+                if (isItLiked) {
                     userLikedTrip(true);
                 } else {
                     userLikedTrip(false);
@@ -46,7 +44,6 @@ function Details() {
                 Navigate('/404-page-not-found');
             })
     }, []);
-
     const ownerElement = (
         <>
             <Link to={`/edit/${tripId}`}>
@@ -55,16 +52,16 @@ function Details() {
                 </button>
             </Link>
             <Link to={`/delete/${tripId}`}>
-                <button className={style["delete"]}>
+                <button className={style["delete"]} >
                     Delete - <i className="fa-solid fa-trash" />
-                </button>
-            </Link>
+                </button >
+            </Link >
         </>
     );
 
     const guestElement = (
-        <>
-            <Link to={`/like/${tripId}`}>
+        <Link to={`/like/${tripId}`}>
+            <>
                 <button className={style["like"]}>
                     Like -
                     {
@@ -73,48 +70,54 @@ function Details() {
                             : <i className="fa-solid fa-thumbs-up" style={{ width: '50px' }} />
                     }
                 </button>
-            </Link>
-        </>
+            </>
+        </Link>
     );
-
     return (
         <section className={style["details"]}>
-            <section className={style["details-container"]}>
-                <div className={style["details-image"]}>
-                    <img src={trip.imageUrl} alt="vatcha dam" />
-                </div>
-                <article className={style["details-info"]}>
-                    <h1 className={style["detailt-info-title"]}>
-                        <span className={style["describe"]}>Destination:</span>
-                        {trip.destination}
-                    </h1>
-                    <h3 className={style["country"]}>
-                        <span className={style["describe"]}>Country:</span>
-                        {trip.country}
-                    </h3>
-                    <p className={style["description"]}>{trip.description}</p>
-                    <h3 className={style["author"]}>
-                        <span className={style["describe"]}>Author:</span>
-                        {trip.author}
-                    </h3>
-                    <div className={style["likes"]}>
-                        Likes:
-                        {trip.likes
-                            ? <span id="likes">{trip.likes.length}</span>
-                            : <span id="likes"> 0</span>
-                        }
+            {Object.values(trip).length > 0
+                ? <section className={style["details-container"]}>
+                    <div className={style["details-image"]}>
+                        <img src={trip.imageUrl} alt="vatcha dam" />
                     </div>
-                    <div className={style["buttons"]}>
-                        {
-                            !guest
-                                ? owner
-                                    ? ownerElement
-                                    : guestElement
-                                : ""
-                        }
-                    </div>
-                </article>
-            </section>
+                    <article className={style["details-info"]}>
+                        <h1 className={style["detailt-info-title"]}>
+                            <span className={style["describe"]}>Destination:</span>
+                            {trip.destination}
+                        </h1>
+                        <h3 className={style["country"]}>
+                            <span className={style["describe"]}>Country:</span>
+                            {trip.country}
+                        </h3>
+                        <p className={style["description"]}>{trip.description}</p>
+                        <h3 className={style["author"]}>
+                            <span className={style["describe"]}>Author:</span>
+                            {trip.author}
+                        </h3>
+                        <div className={style["likes"]}>
+                            Likes:
+                            {trip.likes
+                                ? <span id="likes">{trip.likes.length}</span>
+                                : <span id="likes"> 0</span>
+                            }
+                        </div>
+                        <div className={style["buttons"]}>
+                            {
+                                !guest
+                                    ? owner
+                                        ? ownerElement
+                                        : guestElement
+                                    : ""
+                            }
+                        </div>
+                    </article>
+                </section>
+                :
+                <>
+                    <SpinnerText />
+                    <Spinner />
+                </>
+            }
         </section >
     );
 };

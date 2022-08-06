@@ -1,15 +1,15 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { likeTrip, dislikeTrip } from "../../service/tripService";
 
-import { dislikeTrip, likeTrip } from "../../service/tripService";
-import { AuthContext } from "../../context/AurhContext";
 import { LikedContext } from "../../context/LikedContext";
-
+import { AuthContext } from "../../context/AurhContext";
 function Like() {
+    const { liked } = useContext(LikedContext);
     const { user } = useContext(AuthContext);
-    const { liked } = useContext(LikedContext)
     const { tripId } = useParams();
     const Navigate = useNavigate();
+
     useEffect(() => {
         if (!liked) {
             likeTrip(tripId, user)
@@ -17,18 +17,18 @@ function Like() {
                     Navigate(`/details/${tripId}`);
                 }).catch(err => {
                     console.log(err);
+                    Navigate('/404-page-not-found');
                 })
         } else {
             dislikeTrip(tripId, user)
                 .then(result => {
                     Navigate(`/details/${tripId}`);
                 }).catch(err => {
+                    Navigate('/404-page-not-found');
                     console.log(err);
                 })
         }
-    });
-
-    return null;
+    })
 };
 
 export default Like;
