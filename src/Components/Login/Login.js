@@ -107,12 +107,10 @@ function Login() {
                     {isValid
                         ? <input
                             type="submit"
-                            defaultValue="Registration"
                             className={style["submit-button"]}
                             disabled />
                         : <input
                             type="submit"
-                            defaultValue="Registration"
                             className={style["submit-button"]} />
                     }
                 </div>

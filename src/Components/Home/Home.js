@@ -29,7 +29,6 @@ function Main() {
                 setError(err);
             });
     }, []);
-    console.log(sortedTrips.length <= 0);
 
     return (
         <section className={style["main-section-box"]}>

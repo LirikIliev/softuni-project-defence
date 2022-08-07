@@ -71,6 +71,23 @@
     box-shadow: 5px 2px 9px -3px #00d9ff;
   }
 
+  section.login form.login-form div.login-form-box button.submit-button {
+    margin-top: 20px;
+    flex-basis: 260px;
+    min-height: 40px;
+    border-radius: 15px;
+  }
+
+  section.login form.login-form div.login-form-box button.submit-button:hover {
+    border: 3px solid #555;
+    border-radius: 15px;
+    box-shadow: 5px 2px 9px -3px #00ffbb;
+  }
+
+  section.login form.login-form div.login-form-box button.submit-button:hover:active {
+    box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
   section.login form.login-form div.submit {
     justify-content: center;
   }

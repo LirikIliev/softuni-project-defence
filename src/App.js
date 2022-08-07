@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { AuthContext } from "./context/AurhContext";
+import { AuthProvider } from "./context/AurhContext";
 import { ErrorContext } from "./context/ErrorContext";
 
 import Header from './Components/Header/Header';
@@ -17,26 +17,15 @@ import Logout from "./Components/Logout/Logout";
 import Delete from "./Components/Delete/Delete";
 import PageNotFound from "./Components/404NotFound/PageNotFound";
 
-import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useError } from "./hooks/useError";
 
 function App() {
-  const sessionName = "user";
-  const [auth, setAuth] = useLocalStorage(sessionName, {});
-  const [error, setError] = useError()
-
-  const userLogout = () => {
-    setAuth({});
-  };
-
-  const userLogin = (userData) => {
-    setAuth(userData);
-  };
+  const [error, setError] = useError();
 
   return (
     <>
       <ErrorContext.Provider value={{ error, setError }}>
-        <AuthContext.Provider value={{ user: auth, userLogin, userLogout, sessionName }}>
+        <AuthProvider>
           <Header />
           <main className="main-section">
             <Routes>
@@ -55,7 +44,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
-        </AuthContext.Provider>
+        </AuthProvider>
       </ErrorContext.Provider>
     </>
   );
