@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AurhContext";
 import { ErrorContext } from "./context/ErrorContext";
 
+import PrivetRoute from "./Components/common/PrivetRoute";
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
@@ -33,12 +34,36 @@ function App() {
               <Route path="/all-posts" element={<AllPosts />} />
               <Route path="/my-posts" element={<MyPosts />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
+              <Route path="/logout" element={
+                (
+                  <PrivetRoute>
+                    <Logout />
+                  </PrivetRoute>
+                )
+              } />
               <Route path="/register" element={<Register />} />
-              <Route path="/create-trip" element={<Create />} />
-              <Route path="/edit/:tripId" element={<Edit />} />
+              <Route path="/create-trip" element={
+                (
+                  <PrivetRoute>
+                    <Create />
+                  </PrivetRoute>
+                )
+              } />
+              <Route path="/edit/:tripId" element={
+                (
+                  <PrivetRoute>
+                    <Edit />
+                  </PrivetRoute>
+                )
+              } />
               <Route path="/details/:tripId" element={<Details />} />
-              <Route path="/delete/:tripId" element={<Delete />} />
+              <Route path="/delete/:tripId" element={
+                (
+                  <PrivetRoute>
+                    <Delete />
+                  </PrivetRoute>
+                )
+              } />
               <Route path="/404-page-not-found" element={<PageNotFound />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>

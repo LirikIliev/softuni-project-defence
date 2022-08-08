@@ -13,8 +13,11 @@ export const useLocalStorage = (key, defaultValue) => {
         setValue(newValue);
     };
 
+    const isAuthenticated = Object.values(value).length > 0 ? true : false;
+
     return [
         value,
-        setLocalStorageValue
+        setLocalStorageValue,
+        isAuthenticated,
     ]
 };

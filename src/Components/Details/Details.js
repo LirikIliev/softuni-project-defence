@@ -45,7 +45,7 @@ function Details() {
             });
     }, [liked]);
 
-    function OnClickLikeDislike() {
+    function OnClickLikeDislikeHandle() {
         if (!liked) {
             likeTrip(tripId, user)
                 .then(result => {
@@ -57,7 +57,7 @@ function Details() {
         } else {
             dislikeTrip(tripId, user)
                 .then(result => {
-                    setLiked(false)
+                    setLiked(false);
                 }).catch(err => {
                     setError(err);
                     Navigate('/404-page-not-found');
@@ -82,7 +82,7 @@ function Details() {
 
     const guestElement = (
         <>
-            <button className={style["like"]} onClick={OnClickLikeDislike}>
+            <button className={style["like"]} onClick={OnClickLikeDislikeHandle}>
                 Like -
                 {
                     liked

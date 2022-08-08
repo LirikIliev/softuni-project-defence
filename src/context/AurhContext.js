@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const sessionName = "user";
-    const [auth, setAuth] = useLocalStorage(sessionName, {});
+    const [auth, setAuth, isAuthenticated] = useLocalStorage(sessionName, {});
 
     const userLogout = () => {
         setAuth({});
@@ -16,8 +16,8 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user: auth, userLogin, userLogout, sessionName }}>
+        <AuthContext.Provider value={{ user: auth, userLogin, userLogout, sessionName, isAuthenticated }}>
             {children}
         </AuthContext.Provider>
     );
-}
+};
