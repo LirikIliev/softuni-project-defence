@@ -45,6 +45,13 @@ function Details() {
             });
     }, [liked]);
 
+    function deleteHandler() {
+        const isConfirm = window.confirm('Are yu sure you want to delete this post?');
+        if (isConfirm) {
+            Navigate(`/delete/${tripId}`);
+        };
+    };
+
     function OnClickLikeDislikeHandle() {
         if (!liked) {
             likeTrip(tripId, user)
@@ -72,11 +79,9 @@ function Details() {
                     Edit - <i className="fa-solid fa-pen" />
                 </button>
             </Link>
-            <Link to={`/delete/${tripId}`}>
-                <button className={style["delete"]} >
-                    Delete - <i className="fa-solid fa-trash" />
-                </button >
-            </Link >
+            <button className={style["delete"]} onClick={deleteHandler}>
+                Delete - <i className="fa-solid fa-trash" />
+            </button >
         </>
     );
 

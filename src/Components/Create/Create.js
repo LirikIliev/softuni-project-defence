@@ -142,7 +142,7 @@ function Create() {
                             value={value.destination}
                         />
                         {!validatorValue.destination
-                            ? <div className={style["error-box"]}>It must be at least 3 characters</div>
+                            ? <div className={style["error-box"]}>It must be at least 5 characters</div>
                             : ""
                         }
                     </div>
