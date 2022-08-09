@@ -72,24 +72,17 @@ function Register() {
 
     async function onSubmitRegister(e) {
         e.preventDefault();
-        let newUser = {
-            firstName: value.firstName,
-            lastName: value.lastName,
-            email: value.email,
-            password: value.password,
-        };
-
         try {
             let userData = await registerUser(value);
             userLogin(userData);
-            Navigate("/")
+            Navigate("/");
         } catch (err) {
-            console.log(err.message);
+            Navigate('/login');
         }
     };
 
     function onChangeValue(e) {
-        setValue(state => ({ ...state, [e.target.name]: e.target.value }))
+        setValue(state => ({ ...state, [e.target.name]: e.target.value.trim() }))
     };
 
     return (

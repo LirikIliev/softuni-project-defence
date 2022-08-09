@@ -35,16 +35,23 @@ function Create() {
 
     async function onSubmitData(e) {
         e.preventDefault();
+        const tripResult = {
+            author: value.author.trim(),
+            country: value.country.trim(),
+            destination: value.destination.trim(),
+            imageUrl: value.imageUrl.trim(),
+            description: value.description.trim(),
+        };
         if (!isValid) {
             try {
-                await createTrip(value);
+                await createTrip(tripResult);
                 Navigate('/');
             } catch (err) {
                 setError(err);
                 console.log(err.message);
-            }
-        }
-    }
+            };
+        };
+    };
 
     function onChangeValue(e) {
         setValue(state => ({ ...state, [e.target.name]: e.target.value }));
