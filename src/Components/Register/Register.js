@@ -33,8 +33,16 @@ function Register() {
     const isValid = Object.values(validate)
         .some(x => x !== true);
 
-    function validatorFunction(e) {
+    function onChangeFunctionHandler(e) {
+        onChangeValue(e);
+        validatorFunction(e);
+    }
 
+    function onChangeValue(e) {
+        setValue(state => ({ ...state, [e.target.name]: e.target.value.trim() }))
+    };
+
+    function validatorFunction(e) {
         if (e.target.name === 'firstName') {
             if (e.target.value.length >= 3) {
                 setValidate(state => ({ ...state, [e.target.name]: true }));
@@ -81,10 +89,6 @@ function Register() {
         }
     };
 
-    function onChangeValue(e) {
-        setValue(state => ({ ...state, [e.target.name]: e.target.value.trim() }))
-    };
-
     return (
         <section className={style["registration"]}>
             <h1 className={style["registration-title"]}>Become a part of us!</h1>
@@ -100,8 +104,7 @@ function Register() {
                             type="text"
                             name="firstName"
                             id="firstName"
-                            onChange={onChangeValue}
-                            onBlur={(e) => validatorFunction(e)}
+                            onChange={onChangeFunctionHandler}
                             value={value.firstName}
                         />
                         {!validate.firstName
@@ -121,8 +124,7 @@ function Register() {
                             type="text"
                             name="lastName"
                             id="lastName"
-                            onChange={onChangeValue}
-                            onBlur={(e) => validatorFunction(e)}
+                            onChange={onChangeFunctionHandler}
                             value={value.lastName}
                         />
                         {!validate.lastName
@@ -142,8 +144,7 @@ function Register() {
                             type="email"
                             name="email"
                             id="email"
-                            onChange={onChangeValue}
-                            onBlur={(e) => validatorFunction(e)}
+                            onChange={onChangeFunctionHandler}
                             value={value.email}
                         />
                         {!validate.email
@@ -163,8 +164,7 @@ function Register() {
                             type="password"
                             name="password"
                             id="password"
-                            onChange={onChangeValue}
-                            onBlur={(e) => validatorFunction(e)}
+                            onChange={onChangeFunctionHandler}
                             value={value.password}
                         />
                         {!validate.password
@@ -184,8 +184,7 @@ function Register() {
                             type="password"
                             name="repeatPassword"
                             id="repeatPassword"
-                            onChange={onChangeValue}
-                            onBlur={(e) => validatorFunction(e)}
+                            onChange={onChangeFunctionHandler}
                             value={value.repeatPassword}
                         />
                         {!validate.repeatPassword
@@ -201,14 +200,12 @@ function Register() {
                                 type="submit"
                                 defaultValue="Registration"
                                 className={style["submit-button"]}
-                                onChange={onChangeValue}
                                 disabled
                             />
                             : <input
                                 type="submit"
                                 defaultValue="Registration"
                                 className={style["submit-button"]}
-                                onChange={onChangeValue}
                             />
                     }
                 </div>

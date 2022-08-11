@@ -13,7 +13,7 @@
   }
   section.my-posts-container header.title h2.my-posts-container-title {
     margin: 40px 0 40px 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-size: 2.2em;
     color: #ffffff;
     text-align: center;
@@ -99,7 +99,7 @@
   }
   section.my-posts-container header.title h2.my-posts-container-title {
     margin: 40px 0 40px 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-size: 2.2em;
     color: #ffffff;
     text-align: center;

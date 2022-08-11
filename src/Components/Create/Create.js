@@ -53,6 +53,11 @@ function Create() {
         };
     };
 
+    function onChangeFunctionHandler(e) {
+        onChangeValue(e);
+        validator(e);
+    };
+
     function onChangeValue(e) {
         setValue(state => ({ ...state, [e.target.name]: e.target.value }));
     };
@@ -105,8 +110,7 @@ function Create() {
                         <input
                             type="text"
                             name="author"
-                            onChange={onChangeValue}
-                            onBlur={validator}
+                            onChange={onChangeFunctionHandler}
                             id="author"
                             value={value.author}
                         />
@@ -124,8 +128,7 @@ function Create() {
                         <input
                             type="text"
                             name="country"
-                            onChange={onChangeValue}
-                            onBlur={validator}
+                            onChange={onChangeFunctionHandler}
                             id="country"
                             value={value.country}
                         />
@@ -143,8 +146,7 @@ function Create() {
                         <input
                             type="text"
                             name="destination"
-                            onChange={onChangeValue}
-                            onBlur={validator}
+                            onChange={onChangeFunctionHandler}
                             id="destination"
                             value={value.destination}
                         />
@@ -162,8 +164,7 @@ function Create() {
                         <input
                             type="url"
                             name="imageUrl"
-                            onChange={onChangeValue}
-                            onBlur={validator}
+                            onChange={onChangeFunctionHandler}
                             id="imageUrl"
                             value={value.imageUrl}
                         />
@@ -184,8 +185,7 @@ function Create() {
                             cols={30}
                             rows={3}
                             defaultValue={""}
-                            onChange={onChangeValue}
-                            onBlur={validator}
+                            onChange={onChangeFunctionHandler}
                             textarea={value.description}
                         />
                         {!validatorValue.description

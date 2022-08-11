@@ -27,6 +27,11 @@ function Login() {
     const isValid = Object.values(invalidLogin)
         .some(x => x !== true);
 
+    function onChangeFunctionHandler(e) {
+        onChangeLoginValue(e);
+        validatorFunction(e);
+    }
+
     function onChangeLoginValue(e) {
         setValue(state => ({ ...state, [e.target.name]: e.target.value }))
     };
@@ -75,8 +80,7 @@ function Login() {
                             type="email"
                             name="email"
                             id="email"
-                            onChange={onChangeLoginValue}
-                            onBlur={validatorFunction}
+                            onChange={onChangeFunctionHandler}
                         />
                         {!invalidLogin.email
                             ? <div className={style["error-box"]}>Please you correct email address!</div>
@@ -94,8 +98,8 @@ function Login() {
                         <input
                             type="password"
                             name="password"
-                            id="password" onChange={onChangeLoginValue}
-                            onBlur={validatorFunction}
+                            id="password"
+                            onChange={onChangeFunctionHandler}
                         />
                         {!invalidLogin.password
                             ? <div className={style["error-box"]}>Please fill the field correctly!</div>

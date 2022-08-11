@@ -7,9 +7,9 @@ function TripElement({ trip }) {
         <>
             <img src={trip.imageUrl} className={style["destination-image"]} alt="Image of the some dam" />
             <h2 className={style["destination-title"]}>
-                <span className={style["my-post-label"]}>Country:</span> {trip.country}</h2>
+                <span className={style["post-label"]}>Country:</span> {trip.country}</h2>
             <h4 className={style["destination-title"]}>
-                <span className={style["my-post-label"]}>Destination:</span> {trip.destination}</h4>
+                <span className={style["post-label"]}>Destination:</span>{trip.destination}</h4>
             <Link to={`/details/${trip._id} `}>
                 <button className={style["destination-link"]}>Details</button>
             </Link>

@@ -22,7 +22,7 @@
 
   section.main-section-box section.company-info-container article.company-info-articles h1.main-title {
     margin: 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bold;
     font-size: 2.5em;
     color: white;
@@ -30,7 +30,7 @@
 
   section.main-section-box section.company-info-container article.company-info-articles h3.second-title {
     margin: 0 0 20px 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bold;
     font-size: 3.5em;
     color: white;
@@ -90,18 +90,28 @@
 
   section.main-section-box section.destination-container div.destination-box h2.destination-title {
     margin: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-weight: bold;
     color: white;
     font-size: 1.2em;
   }
 
+  section.main-section-box section.destination-container div.destination-box h2.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
   section.main-section-box section.destination-container div.destination-box h4.destination-title {
     margin: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 1em;
     font-weight: bold;
     color: white;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
   }
 
   section.main-section-box section.destination-container div.destination-box img.destination-image {
@@ -156,7 +166,7 @@
 
   section.main-section-box section.company-info-container article.company-info-articles h1.main-title {
     margin: 0 0 20px 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bold;
     font-size: 1.7em;
     color: white;
@@ -164,7 +174,7 @@
 
   section.main-section-box section.company-info-container article.company-info-articles h3.second-title {
     margin: 0 0 20px 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bold;
     font-size: 2em;
     color: white;
@@ -199,7 +209,7 @@
 
   section.main-section-box section.destination-container h2.destination-container-title {
     margin: 20px 0 0 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-size: 1.5em;
     color: #ffffff;
     text-align: center;
@@ -223,10 +233,28 @@
 
   section.main-section-box section.destination-container div.destination-box h2.destination-title {
     margin: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-weight: bold;
     color: white;
-    font-size: 0.9em;
+    font-size: 1em;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h2.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title {
+    margin: 10px;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+  }
+
+  section.main-section-box section.destination-container div.destination-box h4.destination-title span.post-label {
+    text-transform: uppercase;
+    margin-right: 10px;
   }
 
   section.main-section-box section.destination-container div.destination-box img.destination-image {

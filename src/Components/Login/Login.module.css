@@ -45,6 +45,7 @@
     border-radius: 25px;
     height: 35px;
     width: 230px;
+    padding: 0 10px;
   }
 
   section.login form.login-form div.login-form-box div.value-box div.error-box {

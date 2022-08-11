@@ -11,6 +11,7 @@ import { likeTrip, dislikeTrip } from '../../service/tripService';
 
 import Spinner from '../Spinner/Spinner';
 import SpinnerText from '../Spinner/SpinnerText';
+import Comment from '../Comment/Comment';
 
 function Details() {
     const { tripId } = useParams();
@@ -21,13 +22,15 @@ function Details() {
 
     const Navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    const { setError } = useContext(ErrorContext)
+    const { setError } = useContext(ErrorContext);
     useEffect(() => {
         getCurrent(tripId)
             .then(result => {
-                const isItLiked = result.likes.some(userId => userId == user._id);
-                setTrip(result);
-                if (user._id === result._ownerId) {
+                const tripData = result;
+                const isItLiked = tripData.likes.some(userId => userId == user._id);
+                setTrip(tripData);
+
+                if (user._id === tripData._ownerId) {
                     setOwner(true);
                 };
 
@@ -60,7 +63,7 @@ function Details() {
                 }).catch(err => {
                     setError(err);
                     Navigate('/404-page-not-found');
-                })
+                });
         } else {
             dislikeTrip(tripId, user)
                 .then(result => {
@@ -68,7 +71,7 @@ function Details() {
                 }).catch(err => {
                     setError(err);
                     Navigate('/404-page-not-found');
-                })
+                });
         };
     };
 
@@ -97,6 +100,7 @@ function Details() {
             </button>
         </>
     );
+
     return (
         <section className={style["details"]}>
             {Object.values(trip).length > 0
@@ -135,6 +139,7 @@ function Details() {
                             }
                         </div>
                     </article>
+                    <Comment tripId={tripId} owner={owner} />
                 </section>
                 :
                 <>

@@ -75,7 +75,6 @@ function Edit() {
 
     async function onSubmitEditedValue(e) {
         e.preventDefault();
-        
         const finalEditedTrip = {
             author: editValue.author.trim(),
             country: editValue.country.trim(),
@@ -83,9 +82,9 @@ function Edit() {
             imageUrl: editValue.imageUrl.trim(),
             description: editValue.description.trim(),
         };
-
+        
         try {
-            await editTrip(tripId, finalEditedTrip);
+            await editTrip(tripId, editValue);
             Navigator(`/details/${tripId}`);
         } catch (err) {
             setError(err);
