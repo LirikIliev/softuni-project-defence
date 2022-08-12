@@ -234,13 +234,20 @@
     padding: 15px;
   }
 
+  section.details section.comments-preview div.comment-box span.comment-likes {
+    color: rgb(255, 255, 255);
+    margin-left: 139px;
+  }
+
   section.details section.details-container section.comments-preview div.comment-box span.comment-author {
     color: white;
     margin: 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2.5px solid rgba(169, 169, 169, 0.432);
   }
 
   section.details section.details-container section.comments-preview div.comment-box span.comment-value {
-    color: white;
+    color: rgb(255, 255, 255);
     margin-bottom: 10px;
   }
 
@@ -497,9 +504,22 @@
     padding: 15px;
   }
 
+  section.details section.comments-preview div.comment-box span.comment-likes {
+    color: white;
+    margin: 10px 0;
+    padding-bottom: 5px;
+  }
+
+  section.details section.comments-preview div.comment-box span.comment-likes {
+    color: white;
+    margin: 10px 0;
+  }
+
   section.details section.comments-preview div.comment-box span.comment-author {
     color: white;
     margin: 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2.5px solid rgba(169, 169, 169, 0.432);
   }
 
   section.details section.comments-preview div.comment-box span.comment-value {

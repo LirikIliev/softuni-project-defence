@@ -35,7 +35,7 @@ function Main() {
             <section className={style["company-info-container"]}>
                 <article className={style["company-info-articles"]}>
                     <h3 className={style["second-title"]}>
-                        Share some of your best fishing trips with us!
+                        Share your best fishing trips and destination with us!
                     </h3>
                     <h1 className={style["main-title"]}>Enjoy nature!</h1>
                 </article>

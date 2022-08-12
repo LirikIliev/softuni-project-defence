@@ -21,7 +21,7 @@ const guest =
         <li className={`${styles["header-menu"]} ${styles['register']}`} >
             <NavLink
                 className={styles["header-links"]}
-                to="/register" >
+                to="/register">
                 register
             </NavLink>
         </li>
@@ -49,7 +49,12 @@ const loggedUser =
                 logout
             </NavLink>
         </li >
-    </>
+    </>;
+
+const loggedUserEmail =
+    <>
+
+    </>;
 
 function Header() {
     const { user } = useContext(AuthContext);
@@ -65,6 +70,13 @@ function Header() {
                             Fishing Adventures
                         </NavLink>
                     </li>
+                    <li className={`${styles["header-menu"]} ${styles['home-page-link']}`}>
+                        <NavLink
+                            className={styles["header-links"]}
+                            to="/">
+                            About Us
+                        </NavLink>
+                    </li>
                 </ul>
                 <ul className={styles["main-header-menu"]}>
                     <li className={`${styles["header-menu"]} ${styles['posts']}`}>
@@ -75,6 +87,13 @@ function Header() {
                         </NavLink>
                     </li>
                     {!user.accessToken ? guest : loggedUser}
+                    {!user.accessToken
+                        ? ""
+                        : <li className={`${styles["header-menu-user-email"]}`}>
+                            <i className="fa-solid fa-user" style={{ fontSize: '0.8em' }}>  :</i>
+                            <span className={styles['header-email']}>{user.fullName}</span>
+                        </li>
+                    }
 
                 </ul >
             </nav >

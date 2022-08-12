@@ -1,7 +1,7 @@
 @media screen and (min-width: 821px) {
   header.main-header-box {
     background-color: rgba(48, 48, 48, 0.7);
-    font-size: 1.1em;
+    font-size: 1.2em;
   }
 
   header.main-header-box nav.main-header-navigation {
@@ -14,13 +14,9 @@
   header.main-header-box nav.main-header-navigation ul.main-header-menu {
     display: flex;
     flex-direction: row;
-    flex: 0 0 1;
     flex-wrap: nowrap;
     list-style: none;
-  }
-
-  header.main-header-box nav.main-header-navigation ul.main-header-menu li.home-page-link {
-    font-size: 1.2em;
+    gap: 8px;
   }
 
   header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu {
@@ -36,6 +32,19 @@
 
   header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu:hover:active {
     box-shadow: 5px 2px 9px -3px #00d9ff;
+  }
+
+  header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu-user-email {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu-user-email span.header-email {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    margin-left: 10px;
   }
 
   header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu a.header-links {

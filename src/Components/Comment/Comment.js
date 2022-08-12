@@ -66,6 +66,9 @@ function Comment({ tripId, owner }) {
                 setCommentValue({
                     text: "",
                 });
+                setCommentValidator({
+                    text: false
+                })
             })
             .catch(err => {
                 setError(err);
@@ -127,9 +130,7 @@ function Comment({ tripId, owner }) {
     return (
         <>
             <section className={style["comments-section"]}>
-                {owner ?
-                    ""
-                    :
+                {
                     Object.values(user).length > 0 ?
                         <>
                             <h4>Add Comment</h4>
@@ -185,21 +186,20 @@ function Comment({ tripId, owner }) {
                     isIsCommentMine = comment._ownerId == user._id;
                     return (
                         <div className={style["comment-box"]} key={comment._id}>
+                            <span className={style["comment-likes"]}>{comment.likes.length} <i className="fa-solid fa-thumbs-up" style={{ width: '50px' }} /></span>
                             <span className={style["comment-author"]}>{comment.fullName}</span>
                             <span className={style["comment-value"]}>{comment.text}</span>
                             {Object.values(user).length > 0 ?
-                                !owner ?
-                                    <div className={style["comment-buttons"]}>
-                                        {!isIsCommentMine ?
 
-                                            isILikeIt ?
-                                                <button className={style["comment-like"]} onClick={commentLkeHandler} name='like' style={{ color: "green" }} id={comment._id} set_like={comment.isILikeIt}>Liked</button>
-                                                :
-                                                <button className={style["comment-like"]} onClick={commentLkeHandler} name='like' id={comment._id} set_like={comment.isILikeIt}>Like</button>
-                                            : <button className={style["comment-delete"]} onClick={commentDeleteHandler} name='dislike' id={comment._id}>Delete</button>
-                                        }
-                                    </div>
-                                    : ""
+                                <div className={style["comment-buttons"]}>
+                                    {!isIsCommentMine ?
+                                        isILikeIt ?
+                                            <button className={style["comment-like"]} onClick={commentLkeHandler} name='like' id={comment._id} set_like={comment.isILikeIt}>Liked </button>
+                                            :
+                                            <button className={style["comment-like"]} onClick={commentLkeHandler} name='like' id={comment._id} set_like={comment.isILikeIt}>Like</button>
+                                        : <button className={style["comment-delete"]} onClick={commentDeleteHandler} name='dislike' id={comment._id}>Delete</button>
+                                    }
+                                </div>
                                 : ""
                             }
                         </div>
