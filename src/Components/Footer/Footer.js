@@ -21,6 +21,7 @@ function Footer() {
                         blanditiis, hic dicta ducimus, rerum illo doloribus distinctio alias
                         laboriosam exercitationem?
                     </p>
+                    <Link to="/about-us" className={style["about-link"]}>Read more...</Link>
                 </summary>
                 <aside className={style["footer-contact-box"]}>
                     <h4 className={style["footer-contact-title"]}>Contact Us</h4>
