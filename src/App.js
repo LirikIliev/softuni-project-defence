@@ -17,6 +17,7 @@ import AllPosts from "./Components/AllPosts/AllPosts";
 import Logout from "./Components/Logout/Logout";
 import Delete from "./Components/Delete/Delete";
 import PageNotFound from "./Components/404NotFound/PageNotFound";
+import AboutUs from "./Components/AboutUs/AboutUs";
 
 import { useError } from "./hooks/useError";
 
@@ -66,6 +67,7 @@ function App() {
               } />
               <Route path="/404-page-not-found" element={<PageNotFound />} />
               <Route path="*" element={<PageNotFound />} />
+              <Route path="/about-us" element={<AboutUs />} />
             </Routes>
           </main>
           <Footer />

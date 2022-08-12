@@ -73,7 +73,7 @@ function Header() {
                     <li className={`${styles["header-menu"]} ${styles['home-page-link']}`}>
                         <NavLink
                             className={styles["header-links"]}
-                            to="/">
+                            to="/about-us">
                             About Us
                         </NavLink>
                     </li>

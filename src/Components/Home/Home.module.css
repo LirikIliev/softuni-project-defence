@@ -66,7 +66,7 @@
 
   section.main-section-box section.destination-container h2.destination-container-title {
     margin: 40px 0 0 0;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-size: 2.2em;
     color: #ffffff;
     text-align: center;

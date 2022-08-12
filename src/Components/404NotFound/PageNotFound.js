@@ -1,6 +1,6 @@
 import style from './PageNotFound.module.css';
 
-import notFoundPicture from "../../Resources/img/page-not-found.png";
+import notFoundPicture from "../../Resources/img/page-not-found2.png";
 
 import { ErrorContext } from '../../context/ErrorContext';
 
