@@ -93,6 +93,21 @@
     box-shadow: 5px 2px 9px -3px #00d9ff;
   }
 
+  header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu-user-email {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu-user-email span.header-email {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+  }
+
   header.main-header-box nav.main-header-navigation ul.main-header-menu li.header-menu a.header-links {
     text-decoration: none;
     color: #ffffff;

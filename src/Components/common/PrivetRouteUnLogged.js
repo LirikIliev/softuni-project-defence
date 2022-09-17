@@ -2,7 +2,7 @@ import { AuthContext } from "../../context/AurhContext";
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 
-function PrivetRoute({ children }) {
+function PrivetRouteUnLogged({ children }) {
     const { isAuthenticated } = useContext(AuthContext);
     if (!isAuthenticated) {
         return <Navigate to={'/login'} replace />
@@ -14,4 +14,4 @@ function PrivetRoute({ children }) {
     );
 };
 
-export default PrivetRoute;
+export default PrivetRouteUnLogged;

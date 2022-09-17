@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AurhContext";
 import { ErrorContext } from "./context/ErrorContext";
 
-import PrivetRoute from "./Components/common/PrivetRoute";
+import PrivetRouteUnLogged from "./Components/common/PrivetRouteUnLogged";
+import PrivetRouteLogged from "./Components/common/PrivetRouteLogged";
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
@@ -34,35 +35,43 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/all-posts" element={<AllPosts />} />
               <Route path="/my-posts" element={<MyPosts />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={
+                <PrivetRouteLogged>
+                  <Login />
+                </PrivetRouteLogged>
+              } />
               <Route path="/logout" element={
                 (
-                  <PrivetRoute>
+                  <PrivetRouteUnLogged>
                     <Logout />
-                  </PrivetRoute>
+                  </PrivetRouteUnLogged>
                 )
               } />
-              <Route path="/register" element={<Register />} />
+              <Route path="/register" element={
+                <PrivetRouteLogged>
+                  <Register />
+                </PrivetRouteLogged>
+              } />
               <Route path="/create-trip" element={
                 (
-                  <PrivetRoute>
+                  <PrivetRouteUnLogged>
                     <Create />
-                  </PrivetRoute>
+                  </PrivetRouteUnLogged>
                 )
               } />
               <Route path="/edit/:tripId" element={
                 (
-                  <PrivetRoute>
+                  <PrivetRouteUnLogged>
                     <Edit />
-                  </PrivetRoute>
+                  </PrivetRouteUnLogged>
                 )
               } />
               <Route path="/details/:tripId" element={<Details />} />
               <Route path="/delete/:tripId" element={
                 (
-                  <PrivetRoute>
+                  <PrivetRouteUnLogged>
                     <Delete />
-                  </PrivetRoute>
+                  </PrivetRouteUnLogged>
                 )
               } />
               <Route path="/404-page-not-found" element={<PageNotFound />} />
