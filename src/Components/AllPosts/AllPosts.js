@@ -23,7 +23,7 @@ function AllPosts() {
     return (
         <section className={style["all-posts-container"]}>
             <header className={style["title"]}>
-                {trips.length > 1
+                {trips.length >= 1
                     ? <h2 className={style["all-posts-container-title"]}>All Fishing Trips</h2>
                     : <SpinnerText />
                 }
